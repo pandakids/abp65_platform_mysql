@@ -1,0 +1,10 @@
+﻿{
+  "CompanyName": "Hoooten",
+  "ProjectName": "PlatformMysql",
+  "ProjectType": "Angular",
+  "ProjectVersion": "065000",
+  "ApplicationAreaName": "AppAreaName",
+  "AngularSrcPath": "\\..\\..\\angular\\src\\",
+  "CoreSrcPath": "\\..\\src\\",
+  "LicenseCode": "LicenseCodePlaceHolderToReplace"
+}
