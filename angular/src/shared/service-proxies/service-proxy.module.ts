@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import * as ApiServiceProxies from './service-proxies';
 
 @NgModule({
-    providers: [
-        ApiServiceProxies.BooksServiceProxy,        
+    providers: [       
         ApiServiceProxies.AuditLogServiceProxy,
         ApiServiceProxies.CachingServiceProxy,
         ApiServiceProxies.ChatServiceProxy,
