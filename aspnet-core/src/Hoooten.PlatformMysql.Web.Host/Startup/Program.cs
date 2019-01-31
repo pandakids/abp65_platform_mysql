@@ -15,7 +15,7 @@ namespace Hoooten.PlatformMysql.Web.Startup
             return new WebHostBuilder()
                 .UseKestrel(opt => opt.AddServerHeader = false)
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseUrls("http://*:6000")
+                .UseUrls("http://*:2000")
                 .UseStartup<Startup>();
         }
     }
