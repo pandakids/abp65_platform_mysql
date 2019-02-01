@@ -3,7 +3,6 @@ import { ModalDirective } from 'ngx-bootstrap';
 import { CitiesServiceProxy, CreateOrEditCityDto } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/common/app-component-base';
 
-
 @Component({
     selector: 'createOrEditCityModal',
     templateUrl: './create-or-edit-city-modal.component.html'
@@ -49,7 +48,6 @@ export class CreateOrEditCityModalComponent extends AppComponentBase {
     save(): void {
 			this.saving = true;
 			this._citiesServiceProxy.createOrEdit(this.city)
-			 .finally(() => { this.saving = false; })
 			 .subscribe(() => {
 			    this.notify.info(this.l('SavedSuccessfully'));
 				this.close();

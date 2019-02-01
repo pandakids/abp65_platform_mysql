@@ -5,7 +5,7 @@ import { AppComponentBase } from '@shared/common/app-component-base';
 import { BinaryObjectLookupTableModalComponent } from './binaryObject-lookup-table-modal.component';
 import { UserLookupTableModalComponent } from './user-lookup-table-modal.component';
 import { CityLookupTableModalComponent } from './city-lookup-table-modal.component';
-
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'createOrEditTempleModal',
@@ -64,7 +64,7 @@ export class CreateOrEditTempleModalComponent extends AppComponentBase {
     save(): void {
 			this.saving = true;
 			this._templesServiceProxy.createOrEdit(this.temple)
-			 .finally(() => { this.saving = false; })
+             .pipe(finalize(() => { this.saving = false; }))
 			 .subscribe(() => {
 			    this.notify.info(this.l('SavedSuccessfully'));
 				this.close();
