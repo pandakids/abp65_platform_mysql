@@ -1,0 +1,227 @@
+<div [@routerTransition]>
+    <div class="m-subheader">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto col-xs-6">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    <span>{{l("Cities")}}</span>
+                </h3>
+                <span class="m-section__sub">
+                    {{l("CitiesHeaderInfo")}}
+                </span>
+            </div>
+            <div class="col-xs-6 text-right">
+				<button (click)="exportToExcel()" class="btn btn-outline-success"><i class="fa fa-file-excel-o"></i> {{l("ExportToExcel")}}</button>
+                <button *ngIf="isGranted('Pages.Cities.Create')" (click)="createCity()" 
+			class="btn btn-primary blue"><i class="fa fa-plus"></i> {{l("CreateNewCity")}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="m-content">
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+
+				<form class="horizontal-form" autocomplete="off">
+                    <div class="m-form m-form--label-align-right">
+                        <div class="row align-items-center m--margin-bottom-10">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group align-items-center">
+                                    <div class="input-group">
+                                        <input [(ngModel)]="filterText" name="filterText" autoFocus class="form-control m-input" [placeholder]="l('SearchWithThreeDot')" type="text">
+                                        <span class="input-group-btn">
+                                            <button (click)="getCities()" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						 <div class="row m--margin-bottom-10" [hidden]="!advancedFiltersAreShown">
+						 	<div class="col-md-12">
+						         <div class="m-separator m-separator--dashed"></div>
+						     </div>
+
+
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+                                         <div class="m-stack__item">
+											 <label>{{l("cid")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+											 <input type="text" class="form-control" name="cidFilter" [(ngModel)]="cidFilter">
+									     </div>
+									</div>
+                                </div>
+                            </div>
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+                                         <div class="m-stack__item">
+											 <label>{{l("location")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+											 <input type="text" class="form-control" name="locationFilter" [(ngModel)]="locationFilter">
+									     </div>
+									</div>
+                                </div>
+                            </div>
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+                                         <div class="m-stack__item">
+											 <label>{{l("parent_city")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+											 <input type="text" class="form-control" name="parent_cityFilter" [(ngModel)]="parent_cityFilter">
+									     </div>
+									</div>
+                                </div>
+                            </div>
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+                                         <div class="m-stack__item">
+											 <label>{{l("admin_area")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+											 <input type="text" class="form-control" name="admin_areaFilter" [(ngModel)]="admin_areaFilter">
+									     </div>
+									</div>
+                                </div>
+                            </div>
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+                                         <div class="m-stack__item">
+											 <label>{{l("cnty")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+											 <input type="text" class="form-control" name="cntyFilter" [(ngModel)]="cntyFilter">
+									     </div>
+									</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row margin-bottom-10">
+                            <div class="col-sm-12">
+                                <span class="clickable-item text-muted" *ngIf="!advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-down"></i> {{l("ShowAdvancedFilters")}}</span>
+                                <span class="clickable-item text-muted" *ngIf="advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-up"></i> {{l("HideAdvancedFilters")}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row align-items-center">
+                    <!--<Primeng-Datatable-Start>-->
+                    <div class="primeng-datatable-container"
+                         [busyIf]="primengTableHelper.isLoading">
+                        <p-table #dataTable
+                                     (onLazyLoad)="getCities($event)"
+                                     [value]="primengTableHelper.records"
+                                     rows="{{primengTableHelper.defaultRecordsCountPerPage}}"
+                                     [paginator]="false"
+                                     [lazy]="true"
+                                     [scrollable]="true"
+                                     ScrollWidth="100%"
+                                     [responsive]="primengTableHelper.isResponsive"
+                                     [resizableColumns]="primengTableHelper.resizableColumns">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 130px" [hidden]="!isGrantedAny('Pages.Cities.Edit', 'Pages.Cities.Delete')">{{l('Actions')}}</th>
+                                    <th style="width: 150px" pSortableColumn="city.cid">
+                                        {{l('cid')}}
+                                        <p-sortIcon field="city.cid"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="city.location">
+                                        {{l('location')}}
+                                        <p-sortIcon field="city.location"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="city.parent_city">
+                                        {{l('parent_city')}}
+                                        <p-sortIcon field="city.parent_city"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="city.admin_area">
+                                        {{l('admin_area')}}
+                                        <p-sortIcon field="city.admin_area"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="city.cnty">
+                                        {{l('cnty')}}
+                                        <p-sortIcon field="city.cnty"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="city.lat">
+                                        {{l('lat')}}
+                                        <p-sortIcon field="city.lat"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="city.lon">
+                                        {{l('lon')}}
+                                        <p-sortIcon field="city.lon"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="city.tz">
+                                        {{l('tz')}}
+                                        <p-sortIcon field="city.tz"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="city.type">
+                                        {{l('type')}}
+                                        <p-sortIcon field="city.type"></p-sortIcon>
+                                    </th>
+
+                                </tr>
+                            </ng-template>                           
+							<ng-template pTemplate="body" let-record="$implicit">
+                                <tr>
+                                    <td style="width: 130px"
+                                        [hidden]="!isGrantedAny('Pages.Cities.Edit', 'Pages.Cities.Delete')">
+                                        <div class="btn-group dropdown" normalizePosition>
+                                            <button class="dropdown-toggle btn btn-sm btn-primary"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                <i class="fa fa-cog"></i><span class="caret"></span> {{l("Actions")}}
+                                            </button>
+												<ul class="dropdown-menu">
+												<li>
+													<a 
+														(click)="viewCityModal.show(record)">{{l('View')}}</a>
+												</li>
+												<li>
+													<a *ngIf="permission.isGranted('Pages.Cities.Edit')"
+														(click)="createOrEditCityModal.show(record.city.id)">{{l('Edit')}}</a>
+												</li>
+												<li>
+											        <a *ngIf="permission.isGranted('Pages.Cities.Delete')"
+														(click)="deleteCity(record.city)">{{l('Delete')}}</a>
+												</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td style="width:150px">{{record.city.cid}}</td>
+                                    <td style="width:150px">{{record.city.location}}</td>
+                                    <td style="width:150px">{{record.city.parent_city}}</td>
+                                    <td style="width:150px">{{record.city.admin_area}}</td>
+                                    <td style="width:150px">{{record.city.cnty}}</td>
+                                    <td style="width:150px">{{record.city.lat}}</td>
+                                    <td style="width:150px">{{record.city.lon}}</td>
+                                    <td style="width:150px">{{record.city.tz}}</td>
+                                    <td style="width:150px">{{record.city.type}}</td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+                        <div class="primeng-paging-container">
+                            <p-paginator rows="{{primengTableHelper.defaultRecordsCountPerPage}}"
+                                         #paginator
+                                         (onPageChange)="getCities($event)"
+                                         [totalRecords]="primengTableHelper.totalRecordsCount"
+                                         [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+                            </p-paginator>
+                            <span class="total-records-count">
+                                {{l('TotalRecordsCount', primengTableHelper.totalRecordsCount)}}
+                            </span>
+                        </div>
+                    </div>
+                    <!--<Primeng-Datatable-End>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <createOrEditCityModal #createOrEditCityModal (modalSave)="getCities()"></createOrEditCityModal>
+    <viewCityModal #viewCityModal></viewCityModal>
+</div>

@@ -1,0 +1,95 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #templeForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="temple.id">{{l("EditTemple")}}</span>
+                        <span *ngIf="!temple.id">{{l("CreateNewTemple")}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 
+
+					<div class="form-group m-form__group">
+                        <label>{{l("BinaryObject")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" name="binaryObjectBytes" [(ngModel)]="binaryObjectBytes" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectBinaryObjectModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" (click)="setBinaryObjectIdNull()"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="temple.binaryObjectId" [(ngModel)]="temple.binaryObjectId" type="text"  hidden>
+		 
+					<div class="form-group m-form__group">
+                        <label>{{l("User")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" name="userName" [(ngModel)]="userName" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectUserModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" (click)="setUserIdNull()"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="temple.userId" [(ngModel)]="temple.userId" type="text"  hidden>
+		 
+					<div class="form-group m-form__group">
+                        <label>{{l("City")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" name="citycid" [(ngModel)]="citycid" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectCityModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" (click)="setCityIdNull()"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="temple.cityId" [(ngModel)]="temple.cityId" type="text"  hidden>
+		 
+
+								<div class="form-group">
+									<label>{{l("Name")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="temple.name" name="Name"   minlength="1"  maxlength="20"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("Code")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="temple.code" name="Code"   minlength="5"  maxlength="10" />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("FanmilyName")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="temple.fanmilyName" name="FanmilyName"   minlength="1"  maxlength="5"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("Address")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="temple.address" name="Address"   minlength="1"  maxlength="100" />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("Photo")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="temple.photo" name="Photo"   minlength="1"  maxlength="36" />
+								</div>
+					
+
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button type="submit" class="btn btn-primary blue" [disabled]="!templeForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-save"></i> <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+<binaryObjectLookupTableModal #binaryObjectLookupTableModal (modalSave)="getNewBinaryObjectId()"></binaryObjectLookupTableModal>
+		 <userLookupTableModal #userLookupTableModal (modalSave)="getNewUserId()"></userLookupTableModal>
+		 <cityLookupTableModal #cityLookupTableModal (modalSave)="getNewCityId()"></cityLookupTableModal>
+		 
+</div>

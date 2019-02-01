@@ -2,6 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppCommonModule } from '@app/shared/common/app-common.module';
+import { TemplesComponent } from './ancestor/temples/temples.component';
+import { ViewTempleModalComponent } from './ancestor/temples/view-temple-modal.component';
+import { CreateOrEditTempleModalComponent } from './ancestor/temples/create-or-edit-temple-modal.component';
+import { BinaryObjectLookupTableModalComponent } from './ancestor/temples/binaryObject-lookup-table-modal.component';
+import { UserLookupTableModalComponent } from './ancestor/temples/user-lookup-table-modal.component';
+import { CityLookupTableModalComponent } from './ancestor/temples/city-lookup-table-modal.component';
+
+import { CitiesComponent } from './ancestor/cities/cities.component';
+import { ViewCityModalComponent } from './ancestor/cities/view-city-modal.component';
+import { CreateOrEditCityModalComponent } from './ancestor/cities/create-or-edit-city-modal.component';
+
 import { AutoCompleteModule } from 'primeng/primeng';
 import { PaginatorModule } from 'primeng/primeng';
 import { EditorModule } from 'primeng/primeng';
@@ -42,6 +53,13 @@ NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
         BsDropdownModule.forRoot()
     ],
     declarations: [
+		TemplesComponent,
+		ViewTempleModalComponent,		CreateOrEditTempleModalComponent,
+    BinaryObjectLookupTableModalComponent,
+    UserLookupTableModalComponent,
+    CityLookupTableModalComponent,
+		CitiesComponent,
+		ViewCityModalComponent,		CreateOrEditCityModalComponent,
         DashboardComponent
     ],
     providers: [

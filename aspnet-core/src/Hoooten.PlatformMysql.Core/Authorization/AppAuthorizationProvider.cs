@@ -1,4 +1,4 @@
-﻿using Abp.Authorization;
+using Abp.Authorization;
 using Abp.Configuration.Startup;
 using Abp.Localization;
 using Abp.MultiTenancy;
@@ -29,6 +29,20 @@ namespace Hoooten.PlatformMysql.Authorization
             //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST)
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
+
+            var temples = pages.CreateChildPermission(AppPermissions.Pages_Temples, L("Temples"), multiTenancySides: MultiTenancySides.Host);
+            temples.CreateChildPermission(AppPermissions.Pages_Temples_Create, L("CreateNewTemple"), multiTenancySides: MultiTenancySides.Host);
+            temples.CreateChildPermission(AppPermissions.Pages_Temples_Edit, L("EditTemple"), multiTenancySides: MultiTenancySides.Host);
+            temples.CreateChildPermission(AppPermissions.Pages_Temples_Delete, L("DeleteTemple"), multiTenancySides: MultiTenancySides.Host);
+
+
+
+            var cities = pages.CreateChildPermission(AppPermissions.Pages_Cities, L("Cities"), multiTenancySides: MultiTenancySides.Host);
+            cities.CreateChildPermission(AppPermissions.Pages_Cities_Create, L("CreateNewCity"), multiTenancySides: MultiTenancySides.Host);
+            cities.CreateChildPermission(AppPermissions.Pages_Cities_Edit, L("EditCity"), multiTenancySides: MultiTenancySides.Host);
+            cities.CreateChildPermission(AppPermissions.Pages_Cities_Delete, L("DeleteCity"), multiTenancySides: MultiTenancySides.Host);
+
+
 
             pages.CreateChildPermission(AppPermissions.Pages_DemoUiComponents, L("DemoUiComponents"));
 

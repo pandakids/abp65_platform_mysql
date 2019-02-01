@@ -22,6 +22,10 @@ export class AppNavigationService {
             new AppMenuItem('Editions', 'Pages.Editions', 'flaticon-app', '/app/admin/editions'),
            
             new AppMenuItem('Books', 'Pages.Books', 'flaticon-more', '/app/main/book/books'),
+            
+            new AppMenuItem('Cities', 'Pages.Cities', 'flaticon-more', '/app/main/ancestor/cities'),
+            
+            new AppMenuItem('Temples', 'Pages.Temples', 'flaticon-more', '/app/main/ancestor/temples'),
              new AppMenuItem('Administration', '', 'flaticon-interface-8', '', [
                 new AppMenuItem('OrganizationUnits', 'Pages.Administration.OrganizationUnits', 'flaticon-map', '/app/admin/organization-units'),
                 new AppMenuItem('Roles', 'Pages.Administration.Roles', 'flaticon-suitcase', '/app/admin/roles'),

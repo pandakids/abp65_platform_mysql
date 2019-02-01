@@ -1,0 +1,169 @@
+{
+  "IsRegenerate": true,
+  "MenuPosition": "main",
+  "RelativeNamespace": "Ancestor",
+  "EntityName": "Temple",
+  "EntityNamePlural": "Temples",
+  "TableName": "Temples",
+  "PrimaryKeyType": "int",
+  "BaseClass": "FullAuditedEntity",
+  "EntityHistory": true,
+  "AutoMigration": false,
+  "UpdateDatabase": false,
+  "CreateUserInterface": true,
+  "CreateViewOnly": true,
+  "CreateExcelExport": true,
+  "PagePermission": {
+    "Host": true,
+    "Tenant": false
+  },
+  "Properties": [
+    {
+      "Name": "Name",
+      "Type": "string",
+      "MaxLength": 20,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Code",
+      "Type": "string",
+      "MaxLength": 10,
+      "MinLength": 5,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "FanmilyName",
+      "Type": "string",
+      "MaxLength": 5,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Address",
+      "Type": "string",
+      "MaxLength": 100,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Photo",
+      "Type": "string",
+      "MaxLength": 36,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "IsShow",
+      "Type": "bool",
+      "MaxLength": -1,
+      "MinLength": -1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": false
+      }
+    }
+  ],
+  "NavigationProperties": [
+    {
+      "Namespace": "Hoooten.PlatformMysql.Storage",
+      "ForeignEntityName": "BinaryObject",
+      "IdType": "Guid",
+      "IsNullable": true,
+      "PropertyName": "BinaryObjectId",
+      "DisplayPropertyName": "Bytes",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Hoooten.PlatformMysql.Authorization.Users",
+      "ForeignEntityName": "User",
+      "IdType": "long",
+      "IsNullable": true,
+      "PropertyName": "UserId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Hoooten.PlatformMysql.Ancestor",
+      "ForeignEntityName": "City",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "CityId",
+      "DisplayPropertyName": "cid",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    }
+  ],
+  "EnumDefinitions": []
+}

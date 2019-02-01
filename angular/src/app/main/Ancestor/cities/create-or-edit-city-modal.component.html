@@ -1,0 +1,73 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #cityForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="city.id">{{l("EditCity")}}</span>
+                        <span *ngIf="!city.id">{{l("CreateNewCity")}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 
+
+
+								<div class="form-group">
+									<label>{{l("cid")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="city.cid" name="cid"   minlength="10"  maxlength="50"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("location")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="city.location" name="location"   minlength="1"  maxlength="20"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("parent_city")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="city.parent_city" name="parent_city"   minlength="1"  maxlength="10"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("admin_area")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="city.admin_area" name="admin_area"   minlength="1"  maxlength="10"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("cnty")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="city.cnty" name="cnty"   minlength="1"  maxlength="10"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("lat")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="city.lat" name="lat"   minlength="1"  maxlength="50"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("lon")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="city.lon" name="lon"   minlength="1"  maxlength="50"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("tz")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="city.tz" name="tz"   minlength="1"  maxlength="10" />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("type")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="city.type" name="type"   minlength="1"  maxlength="10"  required/>
+								</div>
+					
+
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button type="submit" class="btn btn-primary blue" [disabled]="!cityForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-save"></i> <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -1,4 +1,5 @@
-﻿using Abp.IdentityServer4;
+using Hoooten.PlatformMysql.Ancestor;
+using Abp.IdentityServer4;
 using Abp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Hoooten.PlatformMysql.Authorization.Roles;
@@ -15,6 +16,10 @@ namespace Hoooten.PlatformMysql.EntityFrameworkCore
 {
     public class PlatformMysqlDbContext : AbpZeroDbContext<Tenant, Role, User, PlatformMysqlDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<Temple> Temples { get; set; }
+
+        public virtual DbSet<City> Cities { get; set; }
+
         /* Define an IDbSet for each entity of the application */
 
         public virtual DbSet<BinaryObject> BinaryObjects { get; set; }

@@ -4,7 +4,6 @@ using Abp.Timing.Timezone;
 using {{Namespace_Here}}.DataExporting.Excel.EpPlus;
 using {{Namespace_Here}}.{{Namespace_Relative_Full_Here}}.Dtos;
 using {{Namespace_Here}}.Dto;
-using {{Namespace_Here}}.Storage;
 
 namespace {{Namespace_Here}}.{{Namespace_Relative_Full_Here}}.Exporting
 {
@@ -16,9 +15,7 @@ namespace {{Namespace_Here}}.{{Namespace_Relative_Full_Here}}.Exporting
 
         public {{Entity_Name_Plural_Here}}ExcelExporter(
             ITimeZoneConverter timeZoneConverter,
-            IAbpSession abpSession,
-            ITempFileCacheManager tempFileCacheManager)
-            : base(tempFileCacheManager)
+            IAbpSession abpSession)
         {
             _timeZoneConverter = timeZoneConverter;
             _abpSession = abpSession;

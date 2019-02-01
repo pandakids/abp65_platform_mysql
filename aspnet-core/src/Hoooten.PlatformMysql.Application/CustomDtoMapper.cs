@@ -1,4 +1,6 @@
-﻿using Abp.Application.Editions;
+using Hoooten.PlatformMysql.Ancestor.Dtos;
+using Hoooten.PlatformMysql.Ancestor;
+using Abp.Application.Editions;
 using Abp.Application.Features;
 using Abp.Auditing;
 using Abp.Authorization;
@@ -40,6 +42,10 @@ namespace Hoooten.PlatformMysql
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+           configuration.CreateMap<CreateOrEditTempleDto, Temple>();
+           configuration.CreateMap<Temple, TempleDto>();
+           configuration.CreateMap<CreateOrEditCityDto, City>();
+           configuration.CreateMap<City, CityDto>();
             //Inputs
             configuration.CreateMap<CheckboxInputType, FeatureInputTypeDto>();
             configuration.CreateMap<SingleLineStringInputType, FeatureInputTypeDto>();

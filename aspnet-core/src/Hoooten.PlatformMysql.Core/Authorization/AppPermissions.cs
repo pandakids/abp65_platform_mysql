@@ -1,4 +1,4 @@
-﻿namespace Hoooten.PlatformMysql.Authorization
+namespace Hoooten.PlatformMysql.Authorization
 {
     /// <summary>
     /// Defines string constants for application's permission names.
@@ -6,6 +6,16 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_Temples = "Pages.Temples";
+        public const string Pages_Temples_Create = "Pages.Temples.Create";
+        public const string Pages_Temples_Edit = "Pages.Temples.Edit";
+        public const string Pages_Temples_Delete = "Pages.Temples.Delete";
+
+        public const string Pages_Cities = "Pages.Cities";
+        public const string Pages_Cities_Create = "Pages.Cities.Create";
+        public const string Pages_Cities_Edit = "Pages.Cities.Edit";
+        public const string Pages_Cities_Delete = "Pages.Cities.Delete";
+
         //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST)
 
         public const string Pages = "Pages";

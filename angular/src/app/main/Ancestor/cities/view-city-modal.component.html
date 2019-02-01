@@ -1,0 +1,71 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>{{l("")}}</span>
+                </h4>
+                <button type="button" class="close" (click)="close()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>{{l("cid")}} :</h6>
+                        <label> {{item.city.cid}}</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>{{l("location")}} :</h6>
+                        <label> {{item.city.location}}</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>{{l("parent_city")}} :</h6>
+                        <label> {{item.city.parent_city}}</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>{{l("admin_area")}} :</h6>
+                        <label> {{item.city.admin_area}}</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>{{l("cnty")}} :</h6>
+                        <label> {{item.city.cnty}}</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>{{l("lat")}} :</h6>
+                        <label> {{item.city.lat}}</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>{{l("lon")}} :</h6>
+                        <label> {{item.city.lon}}</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>{{l("tz")}} :</h6>
+                        <label> {{item.city.tz}}</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>{{l("type")}} :</h6>
+                        <label> {{item.city.type}}</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button [disabled]="saving" type="button" class="btn btn-primary blue" (click)="close()">{{l("Close")}}</button>
+            </div>
+        </div>
+    </div>
+
+</div>
