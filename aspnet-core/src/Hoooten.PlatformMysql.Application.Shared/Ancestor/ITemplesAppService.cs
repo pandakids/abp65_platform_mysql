@@ -13,8 +13,15 @@ namespace Hoooten.PlatformMysql.Ancestor
 
 		Task<GetTempleForEditOutput> GetTempleForEdit(EntityDto input);
 
+        /// <summary>
+        /// 新建宗堂
+        /// 1 奖励 车，衣服，鲜花，纸钱，元宝
+        /// 2 本人成为宗堂管理员
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
 		Task CreateOrEdit(CreateOrEditTempleDto input);
-
+        
 		Task Delete(EntityDto input);
 
 		Task<FileDto> GetTemplesToExcel(GetAllTemplesForExcelInput input);
@@ -25,6 +32,35 @@ namespace Hoooten.PlatformMysql.Ancestor
 		Task<PagedResultDto<UserLookupTableDto>> GetAllUserForLookupTable(GetAllForLookupTableInput input);
 		
 		Task<PagedResultDto<CityLookupTableDto>> GetAllCityForLookupTable(GetAllForLookupTableInput input);
-		
+
+        /// <summary>
+        /// 加入宗堂
+        /// 1 需宗堂管理员进行审核
+        /// 2 奖励纸钱，元宝
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task JoinIn(EntityDto input);
+
+        /// <summary>
+        /// 审核加入宗堂
+        /// </summary>
+        /// <param name="approveJoinIn"></param>
+        /// <returns></returns>
+        Task ApproveJoinInMember(ApproveJoinInMemberInput approveJoinIn);
+
+        /// <summary>
+        /// 退出宗堂
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task LeaveTemple(EntityDto input);
+
+        /// <summary>
+        /// 移交宗堂管理员
+        /// </summary>
+        /// <param name="changeTemple"></param>
+        /// <returns></returns>
+        Task ChangeTempleMasterRole(ChangeTempleMasterRoleInput changeTemple);
     }
 }

@@ -257,5 +257,25 @@ namespace Hoooten.PlatformMysql.Ancestor
                 lookupTableDtoList
             );
          }
+
+        public Task JoinIn(EntityDto input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ApproveJoinInMember(ApproveJoinInMemberInput approveJoinIn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task LeaveTemple(EntityDto input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ChangeTempleMasterRole(ChangeTempleMasterRoleInput changeTemple)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

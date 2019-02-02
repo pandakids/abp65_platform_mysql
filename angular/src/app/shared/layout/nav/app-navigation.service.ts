@@ -21,8 +21,6 @@ export class AppNavigationService {
             new AppMenuItem('Tenants', 'Pages.Tenants', 'flaticon-list-3', '/app/admin/tenants'),
             new AppMenuItem('Editions', 'Pages.Editions', 'flaticon-app', '/app/admin/editions'),
            
-            new AppMenuItem('Books', 'Pages.Books', 'flaticon-more', '/app/main/book/books'),
-            
             new AppMenuItem('Cities', 'Pages.Cities', 'flaticon-more', '/app/main/ancestor/cities'),
             
             new AppMenuItem('Temples', 'Pages.Temples', 'flaticon-more', '/app/main/ancestor/temples'),
