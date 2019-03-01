@@ -6,6 +6,31 @@ namespace Hoooten.PlatformMysql.Authorization
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_ForeActivities = "Pages.ForeActivities";
+        public const string Pages_ForeActivities_Create = "Pages.ForeActivities.Create";
+        public const string Pages_ForeActivities_Edit = "Pages.ForeActivities.Edit";
+        public const string Pages_ForeActivities_Delete = "Pages.ForeActivities.Delete";
+
+        public const string Pages_UserGifts = "Pages.UserGifts";
+        public const string Pages_UserGifts_Create = "Pages.UserGifts.Create";
+        public const string Pages_UserGifts_Edit = "Pages.UserGifts.Edit";
+        public const string Pages_UserGifts_Delete = "Pages.UserGifts.Delete";
+
+        public const string Pages_ForeFatherGifts = "Pages.ForeFatherGifts";
+        public const string Pages_ForeFatherGifts_Create = "Pages.ForeFatherGifts.Create";
+        public const string Pages_ForeFatherGifts_Edit = "Pages.ForeFatherGifts.Edit";
+        public const string Pages_ForeFatherGifts_Delete = "Pages.ForeFatherGifts.Delete";
+
+        public const string Pages_ForeFathers = "Pages.ForeFathers";
+        public const string Pages_ForeFathers_Create = "Pages.ForeFathers.Create";
+        public const string Pages_ForeFathers_Edit = "Pages.ForeFathers.Edit";
+        public const string Pages_ForeFathers_Delete = "Pages.ForeFathers.Delete";
+
+        public const string Pages_TempleMembers = "Pages.TempleMembers";
+        public const string Pages_TempleMembers_Create = "Pages.TempleMembers.Create";
+        public const string Pages_TempleMembers_Edit = "Pages.TempleMembers.Edit";
+        public const string Pages_TempleMembers_Delete = "Pages.TempleMembers.Delete";
+
         public const string Pages_Temples = "Pages.Temples";
         public const string Pages_Temples_Create = "Pages.Temples.Create";
         public const string Pages_Temples_Edit = "Pages.Temples.Edit";

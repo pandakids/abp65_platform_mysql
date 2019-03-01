@@ -42,6 +42,16 @@ namespace Hoooten.PlatformMysql
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+           configuration.CreateMap<CreateOrEditForeActivityDto, ForeActivity>();
+           configuration.CreateMap<ForeActivity, ForeActivityDto>();
+           configuration.CreateMap<CreateOrEditUserGiftDto, UserGift>();
+           configuration.CreateMap<UserGift, UserGiftDto>();
+           configuration.CreateMap<CreateOrEditForeFatherGiftDto, ForeFatherGift>();
+           configuration.CreateMap<ForeFatherGift, ForeFatherGiftDto>();
+           configuration.CreateMap<CreateOrEditForeFatherDto, ForeFather>();
+           configuration.CreateMap<ForeFather, ForeFatherDto>();
+           configuration.CreateMap<CreateOrEditTempleMemberDto, TempleMember>();
+           configuration.CreateMap<TempleMember, TempleMemberDto>();
            configuration.CreateMap<CreateOrEditTempleDto, Temple>();
            configuration.CreateMap<Temple, TempleDto>();
            configuration.CreateMap<CreateOrEditCityDto, City>();

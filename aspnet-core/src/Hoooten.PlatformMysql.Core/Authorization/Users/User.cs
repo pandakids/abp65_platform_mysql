@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Abp.Authorization.Users;
 using Abp.Extensions;
 using Abp.Timing;
+using Hoooten.PlatformMysql.Ancestor;
 
 namespace Hoooten.PlatformMysql.Authorization.Users
 {
@@ -21,6 +23,64 @@ namespace Hoooten.PlatformMysql.Authorization.Users
         public string GoogleAuthenticatorKey { get; set; }
 
         //Can add application specific user properties here
+
+        /// <summary>
+        /// 年代 十五世
+        /// </summary>
+		[StringLength(ForeFatherConsts.MaxCenturyLength, MinimumLength = ForeFatherConsts.MinCenturyLength)]
+        public virtual string Century { get; set; }
+
+        /// <summary>
+        /// 出生
+        /// </summary>
+        public virtual DateTime? BornAt { get; set; }
+
+        /// <summary>
+        /// 死于
+        /// </summary>
+        public virtual DateTime? DieAt { get; set; }
+
+        /// <summary>
+        /// 爱心数量
+        /// </summary>
+        public virtual int LoveNumber { get; set; }
+
+        /// <summary>
+        /// 鲜花数量
+        /// </summary>
+        public virtual int FlowersNumber { get; set; }
+
+        /// <summary>
+        /// 纸钱数量
+        /// </summary>
+        public virtual int MoneyNumber { get; set; }
+
+        /// <summary>
+        /// 元宝数量
+        /// </summary>
+        public virtual int GoldNumber { get; set; }
+
+        /// <summary>
+        /// 经度
+        /// </summary>
+        public virtual string Lon { get; set; }
+
+        /// <summary>
+        /// 纬度
+        /// </summary>
+        public virtual string Lat { get; set; }
+
+        /// <summary>
+        /// 签到时间
+        /// 1. 每天签到 得 5 爱心
+        /// 2. 连续三天签到得 额外得30 爱心
+        /// 3. 连续五天签到得 额外奖励纸钱1000
+        /// 4. 连续10天签到得 额外奖励纸钱2000
+        /// </summary>
+        public virtual DateTime SignDate { get; set; }
+
+        //Can add application specific user properties here
+
 
         public User()
         {

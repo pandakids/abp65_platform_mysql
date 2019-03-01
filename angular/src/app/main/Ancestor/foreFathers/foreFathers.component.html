@@ -1,0 +1,230 @@
+<div [@routerTransition]>
+    <div class="m-subheader">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto col-xs-6">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    <span>{{l("ForeFathers")}}</span>
+                </h3>
+                <span class="m-section__sub">
+                    {{l("ForeFathersHeaderInfo")}}
+                </span>
+            </div>
+            <div class="col-xs-6 text-right">
+				<button (click)="exportToExcel()" class="btn btn-outline-success"><i class="fa fa-file-excel-o"></i> {{l("ExportToExcel")}}</button>
+                <button *ngIf="isGranted('Pages.ForeFathers.Create')" (click)="createForeFather()" 
+			class="btn btn-primary blue"><i class="fa fa-plus"></i> {{l("CreateNewForeFather")}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="m-content">
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+
+				<form class="horizontal-form" autocomplete="off">
+                    <div class="m-form m-form--label-align-right">
+                        <div class="row align-items-center m--margin-bottom-10">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group align-items-center">
+                                    <div class="input-group">
+                                        <input [(ngModel)]="filterText" name="filterText" autoFocus class="form-control m-input" [placeholder]="l('SearchWithThreeDot')" type="text">
+                                        <span class="input-group-btn">
+                                            <button (click)="getForeFathers()" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						 <div class="row m--margin-bottom-10" [hidden]="!advancedFiltersAreShown">
+						 	<div class="col-md-12">
+						         <div class="m-separator m-separator--dashed"></div>
+						     </div>
+
+
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+                                         <div class="m-stack__item">
+											 <label>{{l("Name")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+											 <input type="text" class="form-control" name="nameFilter" [(ngModel)]="nameFilter">
+									     </div>
+									</div>
+                                </div>
+                            </div>
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+                                         <div class="m-stack__item">
+											 <label>{{l("Century")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+											 <input type="text" class="form-control" name="centuryFilter" [(ngModel)]="centuryFilter">
+									     </div>
+									</div>
+                                </div>
+                            </div>
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+										<div class="m-stack__item">
+											<label>({{l("BinaryObject")}}) {{l("TenantId")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+										    <input type="text" class="form-control" name="binaryObjectTenantIdFilter" [(ngModel)]="binaryObjectTenantIdFilter">
+										</div>
+									</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row margin-bottom-10">
+                            <div class="col-sm-12">
+                                <span class="clickable-item text-muted" *ngIf="!advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-down"></i> {{l("ShowAdvancedFilters")}}</span>
+                                <span class="clickable-item text-muted" *ngIf="advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-up"></i> {{l("HideAdvancedFilters")}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row align-items-center">
+                    <!--<Primeng-Datatable-Start>-->
+                    <div class="primeng-datatable-container"
+                         [busyIf]="primengTableHelper.isLoading">
+                        <p-table #dataTable
+                                     (onLazyLoad)="getForeFathers($event)"
+                                     [value]="primengTableHelper.records"
+                                     rows="{{primengTableHelper.defaultRecordsCountPerPage}}"
+                                     [paginator]="false"
+                                     [lazy]="true"
+                                     [scrollable]="true"
+                                     ScrollWidth="100%"
+                                     [responsive]="primengTableHelper.isResponsive"
+                                     [resizableColumns]="primengTableHelper.resizableColumns">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 130px" [hidden]="!isGrantedAny('Pages.ForeFathers.Edit', 'Pages.ForeFathers.Delete')">{{l('Actions')}}</th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.name">
+                                        {{l('Name')}}
+                                        <p-sortIcon field="foreFather.name"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.century">
+                                        {{l('Century')}}
+                                        <p-sortIcon field="foreFather.century"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.bornAt">
+                                        {{l('BornAt')}}
+                                        <p-sortIcon field="foreFather.bornAt"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.dieAt">
+                                        {{l('DieAt')}}
+                                        <p-sortIcon field="foreFather.dieAt"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.loveNumber">
+                                        {{l('LoveNumber')}}
+                                        <p-sortIcon field="foreFather.loveNumber"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.flowersNumber">
+                                        {{l('FlowersNumber')}}
+                                        <p-sortIcon field="foreFather.flowersNumber"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.moneyNumber">
+                                        {{l('MoneyNumber')}}
+                                        <p-sortIcon field="foreFather.moneyNumber"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.goldNumber">
+                                        {{l('GoldNumber')}}
+                                        <p-sortIcon field="foreFather.goldNumber"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.lon">
+                                        {{l('Lon')}}
+                                        <p-sortIcon field="foreFather.lon"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.lat">
+                                        {{l('Lat')}}
+                                        <p-sortIcon field="foreFather.lat"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFather.marks">
+                                        {{l('Marks')}}
+                                        <p-sortIcon field="foreFather.marks"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="binaryObjectTenantId">
+                                        {{l('TenantId')}}
+                                        <p-sortIcon field="binaryObjectTenantId"></p-sortIcon>
+                                    </th>
+
+                                </tr>
+                            </ng-template>                           
+							<ng-template pTemplate="body" let-record="$implicit">
+                                <tr>
+                                    <td style="width: 130px"
+                                        [hidden]="!isGrantedAny('Pages.ForeFathers.Edit', 'Pages.ForeFathers.Delete')">
+                                        <div class="btn-group dropdown" normalizePosition>
+                                            <button class="dropdown-toggle btn btn-sm btn-primary"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                <i class="fa fa-cog"></i><span class="caret"></span> {{l("Actions")}}
+                                            </button>
+												<ul class="dropdown-menu">
+												<li>
+													<a 
+														(click)="viewForeFatherModal.show(record)">{{l('View')}}</a>
+												</li>
+												<li>
+													<a *ngIf="permission.isGranted('Pages.ForeFathers.Edit')"
+														(click)="createOrEditForeFatherModal.show(record.foreFather.id)">{{l('Edit')}}</a>
+												</li>
+												<li>
+											        <a *ngIf="permission.isGranted('Pages.ForeFathers.Delete')"
+														(click)="deleteForeFather(record.foreFather)">{{l('Delete')}}</a>
+												</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td style="width:150px">{{record.binaryObjectTenantId}}</td>
+                                    <td style="width:150px">{{record.foreFather.name}}</td>
+                                    <td style="width:150px">{{record.foreFather.century}}</td>
+                                    <td style="width:150px">
+                                        <span *ngIf="record.foreFather.bornAt">
+											{{record.foreFather.bornAt | momentFormat:'L'}}
+                                        </span>
+                                        <span *ngIf="!record.foreFather.bornAt">-</span>
+                                    </td>
+                                    <td style="width:150px">
+                                        <span *ngIf="record.foreFather.dieAt">
+											{{record.foreFather.dieAt | momentFormat:'L'}}
+                                        </span>
+                                        <span *ngIf="!record.foreFather.dieAt">-</span>
+                                    </td>
+                                    <td style="width:150px">{{record.foreFather.loveNumber}}</td>
+                                    <td style="width:150px">{{record.foreFather.flowersNumber}}</td>
+                                    <td style="width:150px">{{record.foreFather.moneyNumber}}</td>
+                                    <td style="width:150px">{{record.foreFather.goldNumber}}</td>
+                                    <td style="width:150px">{{record.foreFather.lon}}</td>
+                                    <td style="width:150px">{{record.foreFather.lat}}</td>
+                                    <td style="width:150px">{{record.foreFather.marks}}</td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+                        <div class="primeng-paging-container">
+                            <p-paginator rows="{{primengTableHelper.defaultRecordsCountPerPage}}"
+                                         #paginator
+                                         (onPageChange)="getForeFathers($event)"
+                                         [totalRecords]="primengTableHelper.totalRecordsCount"
+                                         [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+                            </p-paginator>
+                            <span class="total-records-count">
+                                {{l('TotalRecordsCount', primengTableHelper.totalRecordsCount)}}
+                            </span>
+                        </div>
+                    </div>
+                    <!--<Primeng-Datatable-End>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <createOrEditForeFatherModal #createOrEditForeFatherModal (modalSave)="getForeFathers()"></createOrEditForeFatherModal>
+    <viewForeFatherModal #viewForeFatherModal></viewForeFatherModal>
+</div>

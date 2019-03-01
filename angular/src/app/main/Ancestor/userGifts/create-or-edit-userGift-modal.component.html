@@ -1,0 +1,64 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #userGiftForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="userGift.id">{{l("EditUserGift")}}</span>
+                        <span *ngIf="!userGift.id">{{l("CreateNewUserGift")}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 
+
+					<div class="form-group m-form__group">
+                        <label>{{l("User")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" name="userName" [(ngModel)]="userName" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectUserModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" (click)="setUserIdNull()"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="userGift.userId" [(ngModel)]="userGift.userId" type="text" required hidden>
+		 
+
+								<div class="form-group">
+									<label>{{l("TheGiftType")}}</label>
+									<input type="number"  class="form-control" [(ngModel)]="userGift.theGiftType" name="TheGiftType"  />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("GiftNumber")}}</label>
+									<input type="number"  class="form-control" [(ngModel)]="userGift.giftNumber" name="GiftNumber"  />
+								</div>
+					
+								<div class="form-group m-form__group row">
+									<label for="Edit_UserGift_SignDate"  class="col-md-12">{{l("SignDate")}}</label>
+									<div class="col-lg-10 col-md-9 col-sm-8">
+										<input class="form-control m-input" type="datetime" datePicker [(selectedDate)]="userGift.signDate" id="Edit_UserGift_SignDate">
+									</div>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("GiftSource")}}</label>
+									<input type="number"  class="form-control" [(ngModel)]="userGift.giftSource" name="GiftSource"  />
+								</div>
+					
+
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button type="submit" class="btn btn-primary blue" [disabled]="!userGiftForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-save"></i> <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+<userLookupTableModal #userLookupTableModal (modalSave)="getNewUserId()"></userLookupTableModal>
+		 
+</div>

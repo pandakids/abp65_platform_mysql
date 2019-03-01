@@ -1,0 +1,71 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #foreActivityForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="foreActivity.id">{{l("EditForeActivity")}}</span>
+                        <span *ngIf="!foreActivity.id">{{l("CreateNewForeActivity")}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 
+
+					<div class="form-group m-form__group">
+                        <label>{{l("BinaryObject")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" name="binaryObjectTenantId" [(ngModel)]="binaryObjectTenantId" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectBinaryObjectModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" (click)="setBinaryObjectIdNull()"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="foreActivity.binaryObjectId" [(ngModel)]="foreActivity.binaryObjectId" type="text"  hidden>
+		 
+					<div class="form-group m-form__group">
+                        <label>{{l("Temple")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" name="templeName" [(ngModel)]="templeName" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectTempleModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" (click)="setTempleIdNull()"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="foreActivity.templeId" [(ngModel)]="foreActivity.templeId" type="text"  hidden>
+		 
+
+								<div class="form-group">
+									<label>{{l("Name")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="foreActivity.name" name="Name"   minlength="1"  maxlength="100"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("Address")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="foreActivity.address" name="Address"   minlength="1"  maxlength="200" />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("Content")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="foreActivity.content" name="Content"   minlength="5"  maxlength="200" />
+								</div>
+					
+
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button type="submit" class="btn btn-primary blue" [disabled]="!foreActivityForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-save"></i> <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+<binaryObjectLookupTableModal #binaryObjectLookupTableModal (modalSave)="getNewBinaryObjectId()"></binaryObjectLookupTableModal>
+		 <templeLookupTableModal #templeLookupTableModal (modalSave)="getNewTempleId()"></templeLookupTableModal>
+		 
+</div>

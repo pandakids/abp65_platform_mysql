@@ -42,8 +42,15 @@ namespace Hoooten.PlatformMysql.Ancestor
 		
 		public virtual long? UserId { get; set; }
 		public User User { get; set; }
-		
-		public virtual int? CityId { get; set; }
+
+        /// <summary>
+        /// 推荐人
+        /// 用于推广运营时使用
+        /// </summary>
+        public virtual long? RecommendUserId { get; set; }
+        public User RecommendUser { get; set; }
+
+        public virtual int? CityId { get; set; }
 		public City City { get; set; }
 		
     }

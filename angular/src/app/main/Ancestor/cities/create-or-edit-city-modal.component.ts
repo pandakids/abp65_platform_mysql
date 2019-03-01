@@ -2,6 +2,11 @@ import { Component, ViewChild, Injector, Output, EventEmitter} from '@angular/co
 import { ModalDirective } from 'ngx-bootstrap';
 import { CitiesServiceProxy, CreateOrEditCityDto } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/common/app-component-base';
+import { finalize } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
+
 
 @Component({
     selector: 'createOrEditCityModal',
@@ -48,6 +53,7 @@ export class CreateOrEditCityModalComponent extends AppComponentBase {
     save(): void {
 			this.saving = true;
 			this._citiesServiceProxy.createOrEdit(this.city)
+             .pipe(finalize(() => { this.saving = false; }))
 			 .subscribe(() => {
 			    this.notify.info(this.l('SavedSuccessfully'));
 				this.close();

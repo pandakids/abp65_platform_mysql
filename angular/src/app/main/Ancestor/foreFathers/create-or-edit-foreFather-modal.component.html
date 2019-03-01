@@ -1,0 +1,101 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #foreFatherForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="foreFather.id">{{l("EditForeFather")}}</span>
+                        <span *ngIf="!foreFather.id">{{l("CreateNewForeFather")}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 
+
+					<div class="form-group m-form__group">
+                        <label>{{l("BinaryObject")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" name="binaryObjectTenantId" [(ngModel)]="binaryObjectTenantId" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectBinaryObjectModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" (click)="setBinaryObjectIdNull()"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="foreFather.binaryObjectId" [(ngModel)]="foreFather.binaryObjectId" type="text"  hidden>
+		 
+
+								<div class="form-group">
+									<label>{{l("Name")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="foreFather.name" name="Name"   minlength="1"  maxlength="100"  required/>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("Century")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="foreFather.century" name="Century"   minlength="1"  maxlength="10" />
+								</div>
+					
+								<div class="form-group m-form__group row">
+									<label for="Edit_ForeFather_BornAt"  class="col-md-12">{{l("BornAt")}}</label>
+									<div class="col-lg-10 col-md-9 col-sm-8">
+										<input class="form-control m-input" type="datetime" datePicker [(selectedDate)]="foreFather.bornAt" id="Edit_ForeFather_BornAt">
+									</div>
+								</div>
+					
+								<div class="form-group m-form__group row">
+									<label for="Edit_ForeFather_DieAt"  class="col-md-12">{{l("DieAt")}}</label>
+									<div class="col-lg-10 col-md-9 col-sm-8">
+										<input class="form-control m-input" type="datetime" datePicker [(selectedDate)]="foreFather.dieAt" id="Edit_ForeFather_DieAt">
+									</div>
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("LoveNumber")}}</label>
+									<input type="number"  class="form-control" [(ngModel)]="foreFather.loveNumber" name="LoveNumber"  />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("FlowersNumber")}}</label>
+									<input type="number"  class="form-control" [(ngModel)]="foreFather.flowersNumber" name="FlowersNumber"  />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("MoneyNumber")}}</label>
+									<input type="number"  class="form-control" [(ngModel)]="foreFather.moneyNumber" name="MoneyNumber"  />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("GoldNumber")}}</label>
+									<input type="number"  class="form-control" [(ngModel)]="foreFather.goldNumber" name="GoldNumber"  />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("Lon")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="foreFather.lon" name="Lon"    />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("Lat")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="foreFather.lat" name="Lat"    />
+								</div>
+					
+								<div class="form-group">
+									<label>{{l("Marks")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="foreFather.marks" name="Marks"   minlength="10"  maxlength="500" />
+								</div>
+					
+
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button type="submit" class="btn btn-primary blue" [disabled]="!foreFatherForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-save"></i> <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+<binaryObjectLookupTableModal #binaryObjectLookupTableModal (modalSave)="getNewBinaryObjectId()"></binaryObjectLookupTableModal>
+		 
+</div>

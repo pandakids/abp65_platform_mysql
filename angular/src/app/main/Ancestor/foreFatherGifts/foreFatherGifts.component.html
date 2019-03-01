@@ -1,0 +1,168 @@
+<div [@routerTransition]>
+    <div class="m-subheader">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto col-xs-6">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    <span>{{l("ForeFatherGifts")}}</span>
+                </h3>
+                <span class="m-section__sub">
+                    {{l("ForeFatherGiftsHeaderInfo")}}
+                </span>
+            </div>
+            <div class="col-xs-6 text-right">
+				<button *ngIf="isGranted('Pages.ForeFatherGifts.Create')" (click)="createForeFatherGift()" 
+			class="btn btn-primary blue"><i class="fa fa-plus"></i> {{l("CreateNewForeFatherGift")}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="m-content">
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+
+				<form class="horizontal-form" autocomplete="off">
+                    <div class="m-form m-form--label-align-right">
+                        <div class="row align-items-center m--margin-bottom-10">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group align-items-center">
+                                    <div class="input-group">
+                                        <input [(ngModel)]="filterText" name="filterText" autoFocus class="form-control m-input" [placeholder]="l('SearchWithThreeDot')" type="text">
+                                        <span class="input-group-btn">
+                                            <button (click)="getForeFatherGifts()" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						 <div class="row m--margin-bottom-10" [hidden]="!advancedFiltersAreShown">
+						 	<div class="col-md-12">
+						         <div class="m-separator m-separator--dashed"></div>
+						     </div>
+
+
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+										<div class="m-stack__item">
+											<label>({{l("ForeFather")}}) {{l("Name")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+										    <input type="text" class="form-control" name="foreFatherNameFilter" [(ngModel)]="foreFatherNameFilter">
+										</div>
+									</div>
+                                </div>
+                            </div>
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+										<div class="m-stack__item">
+											<label>({{l("User")}}) {{l("Name")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+										    <input type="text" class="form-control" name="userNameFilter" [(ngModel)]="userNameFilter">
+										</div>
+									</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row margin-bottom-10">
+                            <div class="col-sm-12">
+                                <span class="clickable-item text-muted" *ngIf="!advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-down"></i> {{l("ShowAdvancedFilters")}}</span>
+                                <span class="clickable-item text-muted" *ngIf="advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-up"></i> {{l("HideAdvancedFilters")}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row align-items-center">
+                    <!--<Primeng-Datatable-Start>-->
+                    <div class="primeng-datatable-container"
+                         [busyIf]="primengTableHelper.isLoading">
+                        <p-table #dataTable
+                                     (onLazyLoad)="getForeFatherGifts($event)"
+                                     [value]="primengTableHelper.records"
+                                     rows="{{primengTableHelper.defaultRecordsCountPerPage}}"
+                                     [paginator]="false"
+                                     [lazy]="true"
+                                     [scrollable]="true"
+                                     ScrollWidth="100%"
+                                     [responsive]="primengTableHelper.isResponsive"
+                                     [resizableColumns]="primengTableHelper.resizableColumns">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 130px" [hidden]="!isGrantedAny('Pages.ForeFatherGifts.Edit', 'Pages.ForeFatherGifts.Delete')">{{l('Actions')}}</th>
+                                    <th style="width: 150px" pSortableColumn="foreFatherGift.theGiftType">
+                                        {{l('TheGiftType')}}
+                                        <p-sortIcon field="foreFatherGift.theGiftType"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFatherGift.giftNumber">
+                                        {{l('GiftNumber')}}
+                                        <p-sortIcon field="foreFatherGift.giftNumber"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="foreFatherName">
+                                        {{l('Name')}}
+                                        <p-sortIcon field="foreFatherName"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="userName">
+                                        {{l('Name')}}
+                                        <p-sortIcon field="userName"></p-sortIcon>
+                                    </th>
+
+                                </tr>
+                            </ng-template>                           
+							<ng-template pTemplate="body" let-record="$implicit">
+                                <tr>
+                                    <td style="width: 130px"
+                                        [hidden]="!isGrantedAny('Pages.ForeFatherGifts.Edit', 'Pages.ForeFatherGifts.Delete')">
+                                        <div class="btn-group dropdown" normalizePosition>
+                                            <button class="dropdown-toggle btn btn-sm btn-primary"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                <i class="fa fa-cog"></i><span class="caret"></span> {{l("Actions")}}
+                                            </button>
+												<ul class="dropdown-menu">
+												<li>
+													<a 
+														(click)="viewForeFatherGiftModal.show(record)">{{l('View')}}</a>
+												</li>
+												<li>
+													<a *ngIf="permission.isGranted('Pages.ForeFatherGifts.Edit')"
+														(click)="createOrEditForeFatherGiftModal.show(record.foreFatherGift.id)">{{l('Edit')}}</a>
+												</li>
+												<li>
+											        <a *ngIf="permission.isGranted('Pages.ForeFatherGifts.Delete')"
+														(click)="deleteForeFatherGift(record.foreFatherGift)">{{l('Delete')}}</a>
+												</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td style="width:150px">{{record.foreFatherName}}</td>
+                                    <td style="width:150px">{{record.userName}}</td>
+                                    <td style="width:150px">{{record.foreFatherGift.theGiftType}}</td>
+                                    <td style="width:150px">{{record.foreFatherGift.giftNumber}}</td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+                        <div class="primeng-paging-container">
+                            <p-paginator rows="{{primengTableHelper.defaultRecordsCountPerPage}}"
+                                         #paginator
+                                         (onPageChange)="getForeFatherGifts($event)"
+                                         [totalRecords]="primengTableHelper.totalRecordsCount"
+                                         [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+                            </p-paginator>
+                            <span class="total-records-count">
+                                {{l('TotalRecordsCount', primengTableHelper.totalRecordsCount)}}
+                            </span>
+                        </div>
+                    </div>
+                    <!--<Primeng-Datatable-End>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <createOrEditForeFatherGiftModal #createOrEditForeFatherGiftModal (modalSave)="getForeFatherGifts()"></createOrEditForeFatherGiftModal>
+    <viewForeFatherGiftModal #viewForeFatherGiftModal></viewForeFatherGiftModal>
+</div>

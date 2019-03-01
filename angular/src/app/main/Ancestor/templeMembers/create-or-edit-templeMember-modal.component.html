@@ -1,0 +1,69 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #templeMemberForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="templeMember.id">{{l("EditTempleMember")}}</span>
+                        <span *ngIf="!templeMember.id">{{l("CreateNewTempleMember")}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 
+
+					<div class="form-group m-form__group">
+                        <label>{{l("User")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" name="userName" [(ngModel)]="userName" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectUserModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" (click)="setUserIdNull()"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="templeMember.userId" [(ngModel)]="templeMember.userId" type="text" required hidden>
+		 
+					<div class="form-group m-form__group">
+                        <label>{{l("Temple")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" name="templeName" [(ngModel)]="templeName" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectTempleModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" (click)="setTempleIdNull()"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="templeMember.templeId" [(ngModel)]="templeMember.templeId" type="text" required hidden>
+		 
+
+								<div class="form-group">
+									<label>{{l("Marks")}}</label>
+									<input type="text"  class="form-control" [(ngModel)]="templeMember.marks" name="Marks"   minlength="1"  maxlength="200" />
+								</div>
+					
+								<br/><div class="m-checkbox-list">
+									<label for="EditTempleMember_IsApproved" class="m-checkbox">
+										<input id="EditTempleMember_IsApproved" type="checkbox" name="IsApproved" [(ngModel)]="templeMember.isApproved"> 
+										{{l("IsApproved")}}
+										<span></span>
+									</label>
+								</div>
+					
+
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button type="submit" class="btn btn-primary blue" [disabled]="!templeMemberForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-save"></i> <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+<userLookupTableModal #userLookupTableModal (modalSave)="getNewUserId()"></userLookupTableModal>
+		 <templeLookupTableModal #templeLookupTableModal (modalSave)="getNewTempleId()"></templeLookupTableModal>
+		 
+</div>

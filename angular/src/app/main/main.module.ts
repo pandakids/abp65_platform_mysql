@@ -2,6 +2,28 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppCommonModule } from '@app/shared/common/app-common.module';
+import { ForeActivitiesComponent } from './ancestor/foreActivities/foreActivities.component';
+import { ViewForeActivityModalComponent } from './ancestor/foreActivities/view-foreActivity-modal.component';
+import { CreateOrEditForeActivityModalComponent } from './ancestor/foreActivities/create-or-edit-foreActivity-modal.component';
+
+import { UserGiftsComponent } from './ancestor/userGifts/userGifts.component';
+import { ViewUserGiftModalComponent } from './ancestor/userGifts/view-userGift-modal.component';
+import { CreateOrEditUserGiftModalComponent } from './ancestor/userGifts/create-or-edit-userGift-modal.component';
+
+import { ForeFatherGiftsComponent } from './ancestor/foreFatherGifts/foreFatherGifts.component';
+import { ViewForeFatherGiftModalComponent } from './ancestor/foreFatherGifts/view-foreFatherGift-modal.component';
+import { CreateOrEditForeFatherGiftModalComponent } from './ancestor/foreFatherGifts/create-or-edit-foreFatherGift-modal.component';
+import { ForeFatherLookupTableModalComponent } from './ancestor/foreFatherGifts/foreFather-lookup-table-modal.component';
+
+import { ForeFathersComponent } from './ancestor/foreFathers/foreFathers.component';
+import { ViewForeFatherModalComponent } from './ancestor/foreFathers/view-foreFather-modal.component';
+import { CreateOrEditForeFatherModalComponent } from './ancestor/foreFathers/create-or-edit-foreFather-modal.component';
+
+import { TempleMembersComponent } from './ancestor/templeMembers/templeMembers.component';
+import { ViewTempleMemberModalComponent } from './ancestor/templeMembers/view-templeMember-modal.component';
+import { CreateOrEditTempleMemberModalComponent } from './ancestor/templeMembers/create-or-edit-templeMember-modal.component';
+import { TempleLookupTableModalComponent } from './ancestor/templeMembers/temple-lookup-table-modal.component';
+
 import { TemplesComponent } from './ancestor/temples/temples.component';
 import { ViewTempleModalComponent } from './ancestor/temples/view-temple-modal.component';
 import { CreateOrEditTempleModalComponent } from './ancestor/temples/create-or-edit-temple-modal.component';
@@ -53,6 +75,18 @@ NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
         BsDropdownModule.forRoot()
     ],
     declarations: [
+		ForeActivitiesComponent,
+		ViewForeActivityModalComponent,		CreateOrEditForeActivityModalComponent,
+		UserGiftsComponent,
+		ViewUserGiftModalComponent,		CreateOrEditUserGiftModalComponent,
+		ForeFatherGiftsComponent,
+		ViewForeFatherGiftModalComponent,		CreateOrEditForeFatherGiftModalComponent,
+    ForeFatherLookupTableModalComponent,
+		ForeFathersComponent,
+		ViewForeFatherModalComponent,		CreateOrEditForeFatherModalComponent,
+		TempleMembersComponent,
+		ViewTempleMemberModalComponent,		CreateOrEditTempleMemberModalComponent,
+    TempleLookupTableModalComponent,
 		TemplesComponent,
 		ViewTempleModalComponent,		CreateOrEditTempleModalComponent,
     BinaryObjectLookupTableModalComponent,

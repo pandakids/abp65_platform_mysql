@@ -16,6 +16,16 @@ namespace Hoooten.PlatformMysql.EntityFrameworkCore
 {
     public class PlatformMysqlDbContext : AbpZeroDbContext<Tenant, Role, User, PlatformMysqlDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<ForeActivity> ForeActivities { get; set; }
+
+        public virtual DbSet<UserGift> UserGifts { get; set; }
+
+        public virtual DbSet<ForeFatherGift> ForeFatherGifts { get; set; }
+
+        public virtual DbSet<ForeFather> ForeFathers { get; set; }
+
+        public virtual DbSet<TempleMember> TempleMembers { get; set; }
+
         public virtual DbSet<Temple> Temples { get; set; }
 
         public virtual DbSet<City> Cities { get; set; }

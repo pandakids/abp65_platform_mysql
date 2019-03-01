@@ -1,14 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>
-    <text name="Book">Book</text>
-    <text name="Description">Description</text>
-    <text name="Author">Author</text>
-    <text name="BooksHeaderInfo">Books header info</text>
-    <text name="CreateNewBook">Create new book</text>
-    <text name="EditBook">Edit book</text>
-    <text name="DeleteBook">Delete book</text>
-    <text name="Books">Books</text>
+  <texts>    <text name="UserGift">User gift</text>
+    <text name="TheGiftType">The gift type</text>
+    <text name="GiftNumber">Gift number</text>
+    <text name="SignDate">Sign date</text>
+    <text name="GiftSource">Gift source</text>
+    <text name="UserGiftsHeaderInfo">User gifts header info</text>
+    <text name="CreateNewUserGift">Create new user gift</text>
+    <text name="EditUserGift">Edit user gift</text>
+    <text name="DeleteUserGift">Delete user gift</text>
+    <text name="UserGifts">User gifts</text>
+    <text name="Ancestor">Ancestor</text>
+    <text name="ForeActivity">Fore activity</text>
+    <text name="Content">Content</text>
+    <text name="ForeActivitiesHeaderInfo">Fore activities header info</text>
+    <text name="CreateNewForeActivity">Create new fore activity</text>
+    <text name="EditForeActivity">Edit fore activity</text>
+    <text name="DeleteForeActivity">Delete fore activity</text>
+    <text name="ForeActivities">Fore activities</text>
+    <text name="BinaryObjectTenantId">Binary object tenant id</text>
+    <text name="PickBinaryObject">Pick binary object</text>
+    <text name="TempleName">Temple name</text>
+    <text name="PickTemple">Pick temple</text>
+
     <text name="PickUser">Pick user</text>
     <text name="True">True</text>
     <text name="False">False</text>

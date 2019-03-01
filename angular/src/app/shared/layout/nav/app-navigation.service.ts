@@ -24,6 +24,16 @@ export class AppNavigationService {
             new AppMenuItem('Cities', 'Pages.Cities', 'flaticon-more', '/app/main/ancestor/cities'),
             
             new AppMenuItem('Temples', 'Pages.Temples', 'flaticon-more', '/app/main/ancestor/temples'),
+            
+            new AppMenuItem('TempleMembers', 'Pages.TempleMembers', 'flaticon-more', '/app/main/ancestor/templeMembers'),
+            
+            new AppMenuItem('ForeFathers', 'Pages.ForeFathers', 'flaticon-more', '/app/main/ancestor/foreFathers'),
+            
+            new AppMenuItem('ForeFatherGifts', 'Pages.ForeFatherGifts', 'flaticon-more', '/app/main/ancestor/foreFatherGifts'),
+            
+            new AppMenuItem('UserGifts', 'Pages.UserGifts', 'flaticon-more', '/app/main/ancestor/userGifts'),
+            
+            new AppMenuItem('ForeActivities', 'Pages.ForeActivities', 'flaticon-more', '/app/main/ancestor/foreActivities'),
              new AppMenuItem('Administration', '', 'flaticon-interface-8', '', [
                 new AppMenuItem('OrganizationUnits', 'Pages.Administration.OrganizationUnits', 'flaticon-map', '/app/admin/organization-units'),
                 new AppMenuItem('Roles', 'Pages.Administration.Roles', 'flaticon-suitcase', '/app/admin/roles'),
