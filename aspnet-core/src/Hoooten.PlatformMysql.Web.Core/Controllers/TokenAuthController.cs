@@ -593,5 +593,49 @@ namespace Hoooten.PlatformMysql.Web.Controllers
 
             return returnUrl;
         }
+
+
+        /// <summary>
+        /// 通过手机验证码授权
+        /// </summary>
+        /// <param name="model">手机验证码Dto</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<AuthenticateResultModel> AuthenticateByPhoneCaptcha([FromBody] AuthenticateByPhoneCaptchaModel model)
+        {
+            var loginResult = await GetLoginResultByPhoneCaptchaAsync(
+                model.PhoneNumber,
+                model.Captcha,
+                GetTenancyNameOrNull()
+            );
+            var accessToken = CreateAccessToken(await CreateJwtClaims(loginResult.Identity, loginResult.User));
+            return new AuthenticateResultModel
+            {
+                AccessToken = accessToken,
+                EncryptedAccessToken = GetEncrpyedAccessToken(accessToken),
+                ExpireInSeconds = (int)_configuration.Expiration.TotalSeconds,
+                UserId = loginResult.User.Id
+            };
+        }
+
+        /// <summary>
+        /// 获取登陆结果通过手机验证码
+        /// </summary>
+        /// <param name="phoneNumber">手机号</param>
+        /// <param name="captcha">验证码</param>
+        /// <param name="tenancyName">租户名</param>
+        /// <returns></returns>
+        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultByPhoneCaptchaAsync(string phoneNumber, int captcha, string tenancyName)
+        {
+            var loginResult = await _logInManager.LoginByMobileAsync(phoneNumber, captcha, tenancyName);
+            switch (loginResult.Result)
+            {
+                case AbpLoginResultType.Success:
+                    return loginResult;
+                default:
+                    throw _abpLoginResultTypeHelper.CreateExceptionForFailedLoginAttempt(loginResult.Result, loginResult.User.UserName, tenancyName);
+            }
+        }
+
     }
 }

@@ -133,5 +133,19 @@ namespace Hoooten.PlatformMysql.Authorization.Users
         {
             return _localizationManager.GetString(PlatformMysqlConsts.LocalizationSourceName, name);
         }
+
+        /// <summary>
+        /// 检查验证码
+        /// </summary>
+        /// <param name="user">用户</param>
+        /// <param name="captcha">验证码</param>
+        /// <returns></returns>
+        public virtual bool CheckCaptcha(User user, int captcha)
+        {
+            if (user.Captcha == captcha)
+                return true;
+            return false;
+        }
+
     }
 }

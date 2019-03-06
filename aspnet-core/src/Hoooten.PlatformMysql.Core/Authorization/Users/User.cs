@@ -79,6 +79,11 @@ namespace Hoooten.PlatformMysql.Authorization.Users
         /// </summary>
         public virtual DateTime SignDate { get; set; }
 
+        /// <summary>
+        /// 验证码
+        /// </summary>
+        public virtual int Captcha { get; set; }
+
         //Can add application specific user properties here
 
 
