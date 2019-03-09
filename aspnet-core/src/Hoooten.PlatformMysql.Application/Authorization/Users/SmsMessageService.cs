@@ -52,10 +52,10 @@ namespace Hoooten.PlatformMysql.Authorization.Users
 
                 //将验证码写入User表
                 var user = _userRepository.GetAll().Where(e => e.PhoneNumber == to).FirstOrDefault();
-                user.Captcha = randomCode;
 
                 if (user != null)
                 {
+                    user.Captcha = randomCode;
                     var templateParams = "{\"code\":\"" + code + "\"}";
                     _smsSender.Send(to, templateCode, templateParams);
                 }
