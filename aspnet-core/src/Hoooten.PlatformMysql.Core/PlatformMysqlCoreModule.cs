@@ -27,6 +27,7 @@ using Hoooten.PlatformMysql.Localization;
 using Hoooten.PlatformMysql.MultiTenancy;
 using Hoooten.PlatformMysql.Net.Emailing;
 using Hoooten.PlatformMysql.Notifications;
+using Abp;
 
 namespace Hoooten.PlatformMysql
 {
@@ -35,7 +36,8 @@ namespace Hoooten.PlatformMysql
         typeof(AbpZeroLdapModule),
         typeof(AbpAutoMapperModule),
         typeof(AbpAspNetZeroCoreModule),
-        typeof(AbpMailKitModule))]
+        typeof(AbpMailKitModule),
+        typeof(AbpNetSmsModule))]
     public class PlatformMysqlCoreModule : AbpModule
     {
         public override void PreInitialize()
@@ -80,8 +82,10 @@ namespace Hoooten.PlatformMysql
 
             if (DebugHelper.IsDebug)
             {
-                //Disabling email sending in debug mode
-                Configuration.ReplaceService<IEmailSender, NullEmailSender>(DependencyLifeStyle.Transient);
+                //调试模式禁用邮件发送
+                //IocManager.Register<IEmailSender, NullEmailSender>(DependencyLifeStyle.Transient);
+                //调试模式禁用手机短信发送
+                //IocManager.Register<ISmsSender, NullSmsSender>(DependencyLifeStyle.Transient);
             }
 
             Configuration.ReplaceService(typeof(IEmailSenderConfiguration), () =>

@@ -40,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Abp.Net.Sms" Version="1.0.0" />
+    <PackageReference Include="aliyun-net-sdk-core" Version="1.2.0" />
+    <PackageReference Include="aliyun-net-sdk-dysmsapi" Version="1.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />

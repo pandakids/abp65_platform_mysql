@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Abp.Configuration;
+﻿using Abp.Configuration;
+using Abp.Net.Sms;
 using Abp.Zero.Configuration;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
 
 namespace Hoooten.PlatformMysql.Configuration
 {
@@ -37,6 +39,18 @@ namespace Hoooten.PlatformMysql.Configuration
         private IEnumerable<SettingDefinition> GetHostSettings()
         {
             return new[] {
+                // Sms config
+                new SettingDefinition(SmsSettingNames.ServiceUrl,
+                    ConfigurationManager.AppSettings[SmsSettingNames.ServiceUrl] ?? ""),
+                new SettingDefinition(SmsSettingNames.AppKey,
+                    ConfigurationManager.AppSettings[SmsSettingNames.AppKey] ?? ""),
+                new SettingDefinition(SmsSettingNames.AppSecret,
+                    ConfigurationManager.AppSettings[SmsSettingNames.AppSecret] ?? ""),
+                new SettingDefinition(SmsSettingNames.DefaultFreeSignName,
+                    ConfigurationManager.AppSettings[SmsSettingNames.DefaultFreeSignName] ?? ""),
+                new SettingDefinition(SmsSettingNames.DefaultSmsTemplateCode,
+                    ConfigurationManager.AppSettings[SmsSettingNames.DefaultSmsTemplateCode] ?? ""),
+
                 new SettingDefinition(AppSettings.TenantManagement.AllowSelfRegistration, GetFromAppSettings(AppSettings.TenantManagement.AllowSelfRegistration, "true"), isVisibleToClients: true),
                 new SettingDefinition(AppSettings.TenantManagement.IsNewRegisteredTenantActiveByDefault, GetFromAppSettings(AppSettings.TenantManagement.IsNewRegisteredTenantActiveByDefault, "false")),
                 new SettingDefinition(AppSettings.TenantManagement.UseCaptchaOnRegistration, GetFromAppSettings(AppSettings.TenantManagement.UseCaptchaOnRegistration, "true"), isVisibleToClients: true),

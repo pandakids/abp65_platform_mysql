@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Abp.Net.Sms" Version="1.0.0" />
+    <PackageReference Include="aliyun-net-sdk-core" Version="1.2.0" />
+    <PackageReference Include="aliyun-net-sdk-dysmsapi" Version="1.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.2.0" />
