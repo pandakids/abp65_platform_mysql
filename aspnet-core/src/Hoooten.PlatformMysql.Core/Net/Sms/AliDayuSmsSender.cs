@@ -21,7 +21,8 @@ namespace Hoooten.PlatformMysql.Net.Sms
         public AliDayuSmsSender(ISmsSenderConfiguration configuration) : base(configuration)
         {
             Logger = NullLogger.Instance;
-            profile = DefaultProfile.GetProfile("cn-hangzhou", configuration.GetAppKey(), configuration.GetAppSecret());
+            profile = DefaultProfile.GetProfile("cn-hangzhou", string.IsNullOrEmpty(configuration.GetAppKey())? "LTAI8ubIJUKr2bN1" : configuration.GetAppKey(), 
+                string.IsNullOrEmpty(configuration.GetAppSecret())? "Fyt5cVG33drJNmrWN6QzdL3PlZUJQx" : configuration.GetAppSecret());
         }
 
         protected override void SendSms(SmsMessage sms)
@@ -35,7 +36,7 @@ namespace Hoooten.PlatformMysql.Net.Sms
                 //必填:待发送手机号。支持以逗号分隔的形式进行批量调用，批量上限为1000个手机号码,批量调用相对于单条调用及时性稍有延迟,验证码类型的短信推荐使用单条调用的方式
                 request.PhoneNumbers = sms.To;
                 //必填:短信签名-可在短信控制台中找到
-                request.SignName = sms.FreeSignName;
+                request.SignName = string.IsNullOrEmpty(sms.FreeSignName)? "站长之家" : sms.FreeSignName;
                 //必填:短信模板-可在短信控制台中找到
                 request.TemplateCode = string.IsNullOrEmpty(sms.TemplateCode)
                     ? _configuration.GetDefaultSmsTemplateCode()

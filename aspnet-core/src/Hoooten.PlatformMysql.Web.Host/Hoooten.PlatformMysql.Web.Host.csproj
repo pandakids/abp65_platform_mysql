@@ -21,6 +21,10 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\FolderProfile.pubxml" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <None Include="app.config" />
     <None Include="wwwroot\Plugins\.gitkeep" />
     <None Update="Dockerfile">
@@ -67,6 +71,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="wwwroot\Plugins\" />
   </ItemGroup>
 
