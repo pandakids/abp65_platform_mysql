@@ -23,9 +23,22 @@ namespace Hoooten.PlatformMysql.Authorization.Users
             _userRepository = userRepository;
         }
 
+        /// <summary>
+        /// 注册或其他发送短信业务
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="templateCode"></param>
+        /// <param name="templateParams"></param>
         public void Send(string to, string templateCode, string templateParams)
         {
-            _smsSender.Send(to, templateCode, templateParams);
+            if (string.IsNullOrEmpty(templateParams))
+            {
+                var randomCode = RandomHelper.GetRandom(1000, 9999);
+                var code = randomCode.ToString();
+                templateParams = "{\"code\":\"" + code + "\"}";
+
+                _smsSender.Send(to, templateCode, templateParams);
+            }
         }
 
         public async Task SendAsync(string to, string templateCode, string templateParams)
