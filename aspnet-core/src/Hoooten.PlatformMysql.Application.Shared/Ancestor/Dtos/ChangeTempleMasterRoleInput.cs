@@ -7,5 +7,7 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
     public class ChangeTempleMasterRoleInput
     {
         public long? ToUserId { get; set; }
+
+        public int TempleId { get; set; }
     }
 }
