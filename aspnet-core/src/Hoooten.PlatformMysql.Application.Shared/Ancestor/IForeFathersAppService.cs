@@ -21,6 +21,8 @@ namespace Hoooten.PlatformMysql.Ancestor
 
 		
 		Task<PagedResultDto<BinaryObjectLookupTableDto>> GetAllBinaryObjectForLookupTable(GetAllForLookupTableInput input);
+		
+		Task<PagedResultDto<TempleLookupTableDto>> GetAllTempleForLookupTable(GetAllForLookupTableInput input);
 
         /// <summary>
         /// 重新设置先祖GPS定位

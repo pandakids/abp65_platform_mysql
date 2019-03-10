@@ -73,6 +73,17 @@
 									</div>
                                 </div>
                             </div>
+							<div class="col-md-3">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+									<div class="form-group">
+										<div class="m-stack__item">
+											<label>({{l("Temple")}}) {{l("Name")}}</label>
+											 <div class="m-separator m-separator--dashed"></div>
+										    <input type="text" class="form-control" name="templeNameFilter" [(ngModel)]="templeNameFilter">
+										</div>
+									</div>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="row margin-bottom-10">
@@ -149,6 +160,10 @@
                                         {{l('TenantId')}}
                                         <p-sortIcon field="binaryObjectTenantId"></p-sortIcon>
                                     </th>
+                                    <th style="width: 150px" pSortableColumn="templeName">
+                                        {{l('Name')}}
+                                        <p-sortIcon field="templeName"></p-sortIcon>
+                                    </th>
 
                                 </tr>
                             </ng-template>                           
@@ -180,6 +195,7 @@
                                         </div>
                                     </td>
                                     <td style="width:150px">{{record.binaryObjectTenantId}}</td>
+                                    <td style="width:150px">{{record.templeName}}</td>
                                     <td style="width:150px">{{record.foreFather.name}}</td>
                                     <td style="width:150px">{{record.foreFather.century}}</td>
                                     <td style="width:150px">

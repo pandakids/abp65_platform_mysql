@@ -31,6 +31,7 @@ export class ForeFathersComponent extends AppComponentBase {
 		nameFilter = '';
 		centuryFilter = '';
 		binaryObjectTenantIdFilter = '';
+		templeNameFilter = '';
 
 	
 
@@ -59,6 +60,7 @@ export class ForeFathersComponent extends AppComponentBase {
 			this.nameFilter,
 			this.centuryFilter,
 			this.binaryObjectTenantIdFilter,
+			this.templeNameFilter,
             this.primengTableHelper.getSorting(this.dataTable),
             this.primengTableHelper.getSkipCount(this.paginator, event),
             this.primengTableHelper.getMaxResultCount(this.paginator, event)
@@ -98,6 +100,7 @@ export class ForeFathersComponent extends AppComponentBase {
 			this.nameFilter,
 			this.centuryFilter,
 			this.binaryObjectTenantIdFilter,
+			this.templeNameFilter,
 		)
         .subscribe(result => {
             this._fileDownloadService.downloadTempFile(result);

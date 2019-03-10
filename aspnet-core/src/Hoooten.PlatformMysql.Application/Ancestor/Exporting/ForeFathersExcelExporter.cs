@@ -46,7 +46,8 @@ namespace Hoooten.PlatformMysql.Ancestor.Exporting
                         L("Lon"),
                         L("Lat"),
                         L("Marks"),
-                        (L("BinaryObject")) + L("TenantId")
+                        (L("BinaryObject")) + L("TenantId"),
+                        (L("Temple")) + L("Name")
                         );
 
                     AddObjects(
@@ -62,7 +63,8 @@ namespace Hoooten.PlatformMysql.Ancestor.Exporting
                         _ => _.ForeFather.Lon,
                         _ => _.ForeFather.Lat,
                         _ => _.ForeFather.Marks,
-                        _ => _.BinaryObjectTenantId
+                        _ => _.BinaryObjectTenantId,
+                        _ => _.TempleName
                         );
 
 					var bornAtColumn = sheet.Column(3);

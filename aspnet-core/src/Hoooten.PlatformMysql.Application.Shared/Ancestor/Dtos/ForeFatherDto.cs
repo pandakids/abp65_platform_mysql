@@ -24,12 +24,14 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 
 		public double Lon { get; set; }
 
-		public long Lat { get; set; }
+		public double Lat { get; set; }
 
 		public string Marks { get; set; }
 
 
 		 public Guid? BinaryObjectId { get; set; }
+
+		 		 public int? TempleId { get; set; }
 
 		 
     }

@@ -1,4 +1,5 @@
 using Hoooten.PlatformMysql.Storage;
+using Hoooten.PlatformMysql.Ancestor;
 
 using System;
 using System.Linq;
@@ -23,13 +24,15 @@ namespace Hoooten.PlatformMysql.Ancestor
 		 private readonly IRepository<ForeFather> _foreFatherRepository;
 		 private readonly IForeFathersExcelExporter _foreFathersExcelExporter;
 		 private readonly IRepository<BinaryObject,Guid> _binaryObjectRepository;
+		 private readonly IRepository<Temple,int> _templeRepository;
 		 
 
-		  public ForeFathersAppService(IRepository<ForeFather> foreFatherRepository, IForeFathersExcelExporter foreFathersExcelExporter , IRepository<BinaryObject, Guid> binaryObjectRepository) 
+		  public ForeFathersAppService(IRepository<ForeFather> foreFatherRepository, IForeFathersExcelExporter foreFathersExcelExporter , IRepository<BinaryObject, Guid> binaryObjectRepository, IRepository<Temple, int> templeRepository) 
 		  {
 			_foreFatherRepository = foreFatherRepository;
 			_foreFathersExcelExporter = foreFathersExcelExporter;
 			_binaryObjectRepository = binaryObjectRepository;
+		_templeRepository = templeRepository;
 		
 		  }
 
@@ -45,13 +48,17 @@ namespace Hoooten.PlatformMysql.Ancestor
 			var query = (from o in filteredForeFathers
                          join o1 in _binaryObjectRepository.GetAll() on o.BinaryObjectId equals o1.Id into j1
                          from s1 in j1.DefaultIfEmpty()
+                         join o2 in _templeRepository.GetAll() on o.TempleId equals o2.Id into j2
+                         from s2 in j2.DefaultIfEmpty()
                          
                          select new GetForeFatherForView() { ForeFather = ObjectMapper.Map<ForeFatherDto>(o)
 						 , BinaryObjectTenantId = s1 == null ? "" : s1.TenantId.ToString()
+					, TempleName = s2 == null ? "" : s2.Name.ToString()
 					
 						 })
 						 
-						.WhereIf(!string.IsNullOrWhiteSpace(input.BinaryObjectTenantIdFilter), e => e.BinaryObjectTenantId.ToLower() == input.BinaryObjectTenantIdFilter.ToLower().Trim());
+						.WhereIf(!string.IsNullOrWhiteSpace(input.BinaryObjectTenantIdFilter), e => e.BinaryObjectTenantId.ToLower() == input.BinaryObjectTenantIdFilter.ToLower().Trim())
+						.WhereIf(!string.IsNullOrWhiteSpace(input.TempleNameFilter), e => e.TempleName.ToLower() == input.TempleNameFilter.ToLower().Trim());
 
             var totalCount = await query.CountAsync();
 
@@ -76,6 +83,11 @@ namespace Hoooten.PlatformMysql.Ancestor
             {
                 var binaryObject = await _binaryObjectRepository.FirstOrDefaultAsync((Guid)output.ForeFather.BinaryObjectId);
                 output.BinaryObjectTenantId = binaryObject.TenantId.ToString();
+            }
+			if (output.ForeFather.TempleId != null)
+            {
+                var temple = await _templeRepository.FirstOrDefaultAsync((int)output.ForeFather.TempleId);
+                output.TempleName = temple.Name.ToString();
             }
 			
 			
@@ -127,13 +139,17 @@ namespace Hoooten.PlatformMysql.Ancestor
 			var query = (from o in filteredForeFathers
                          join o1 in _binaryObjectRepository.GetAll() on o.BinaryObjectId equals o1.Id into j1
                          from s1 in j1.DefaultIfEmpty()
+                         join o2 in _templeRepository.GetAll() on o.TempleId equals o2.Id into j2
+                         from s2 in j2.DefaultIfEmpty()
                          
                          select new GetForeFatherForView() { ForeFather = ObjectMapper.Map<ForeFatherDto>(o)
 						 , BinaryObjectTenantId = s1 == null ? "" : s1.TenantId.ToString()
+					, TempleName = s2 == null ? "" : s2.Name.ToString()
 					
 						 })
 						 
-						.WhereIf(!string.IsNullOrWhiteSpace(input.BinaryObjectTenantIdFilter), e => e.BinaryObjectTenantId.ToLower() == input.BinaryObjectTenantIdFilter.ToLower().Trim());
+						.WhereIf(!string.IsNullOrWhiteSpace(input.BinaryObjectTenantIdFilter), e => e.BinaryObjectTenantId.ToLower() == input.BinaryObjectTenantIdFilter.ToLower().Trim())
+						.WhereIf(!string.IsNullOrWhiteSpace(input.TempleNameFilter), e => e.TempleName.ToLower() == input.TempleNameFilter.ToLower().Trim());
 
 
             var ForeFatherListDtos = await query.ToListAsync();
@@ -165,6 +181,33 @@ namespace Hoooten.PlatformMysql.Ancestor
 			}
 
             return new PagedResultDto<BinaryObjectLookupTableDto>(
+                totalCount,
+                lookupTableDtoList
+            );
+         }		 [AbpAuthorize(AppPermissions.Pages_ForeFathers)]
+         public async Task<PagedResultDto<TempleLookupTableDto>> GetAllTempleForLookupTable(GetAllForLookupTableInput input)
+         {
+             var query = _templeRepository.GetAll().WhereIf(
+                    !string.IsNullOrWhiteSpace(input.Filter),
+                   e=> e.Name.ToString().Contains(input.Filter)
+                );
+
+            var totalCount = await query.CountAsync();
+
+            var templeList = await query
+                .PageBy(input)
+                .ToListAsync();
+
+			var lookupTableDtoList = new List<TempleLookupTableDto>();
+			foreach(var temple in templeList){
+				lookupTableDtoList.Add(new TempleLookupTableDto
+				{
+					Id = temple.Id,
+					DisplayName = temple.Name.ToString()
+				});
+			}
+
+            return new PagedResultDto<TempleLookupTableDto>(
                 totalCount,
                 lookupTableDtoList
             );

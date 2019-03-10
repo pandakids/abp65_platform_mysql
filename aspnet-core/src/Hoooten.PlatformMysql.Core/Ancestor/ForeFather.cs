@@ -1,5 +1,6 @@
 
 using Hoooten.PlatformMysql.Storage;
+using Hoooten.PlatformMysql.Ancestor;
 
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -44,6 +45,9 @@ namespace Hoooten.PlatformMysql.Ancestor
 
 		public virtual Guid? BinaryObjectId { get; set; }
 		public BinaryObject BinaryObject { get; set; }
+		
+		public virtual int? TempleId { get; set; }
+		public Temple Temple { get; set; }
 		
     }
 }

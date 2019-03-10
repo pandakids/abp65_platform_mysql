@@ -3,6 +3,7 @@ import { ModalDirective } from 'ngx-bootstrap';
 import { ForeFathersServiceProxy, CreateOrEditForeFatherDto } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { BinaryObjectLookupTableModalComponent } from './binaryObject-lookup-table-modal.component';
+import { TempleLookupTableModalComponent } from './temple-lookup-table-modal.component';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class CreateOrEditForeFatherModalComponent extends AppComponentBase {
 
     @ViewChild('createOrEditModal') modal: ModalDirective;
 	 @ViewChild('binaryObjectLookupTableModal') binaryObjectLookupTableModal: BinaryObjectLookupTableModalComponent;
+	 @ViewChild('templeLookupTableModal') templeLookupTableModal: TempleLookupTableModalComponent;
 	
 
     @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
@@ -22,6 +24,7 @@ export class CreateOrEditForeFatherModalComponent extends AppComponentBase {
 
     foreFather: CreateOrEditForeFatherDto = new CreateOrEditForeFatherDto();
 	binaryObjectTenantId = '';
+		 templeName = '';
 		 
 
     constructor(
@@ -36,6 +39,7 @@ export class CreateOrEditForeFatherModalComponent extends AppComponentBase {
 			this.foreFather = new CreateOrEditForeFatherDto();
 			this.foreFather.id = foreFatherId;
 			this.binaryObjectTenantId = '';
+		 this.templeName = '';
 		 
 			this.active = true;
 			this.modal.show();
@@ -44,6 +48,7 @@ export class CreateOrEditForeFatherModalComponent extends AppComponentBase {
 			this._foreFathersServiceProxy.getForeFatherForEdit(foreFatherId).subscribe(result => {
 				this.foreFather = result.foreFather;
 				this.binaryObjectTenantId = result.binaryObjectTenantId;
+		 this.templeName = result.templeName;
 		 
 				this.active = true;
 				this.modal.show();
@@ -67,17 +72,30 @@ export class CreateOrEditForeFatherModalComponent extends AppComponentBase {
         this.binaryObjectLookupTableModal.displayName = this.binaryObjectTenantId;
         this.binaryObjectLookupTableModal.show();
     }
+	    openSelectTempleModal() {
+        this.templeLookupTableModal.id = this.foreFather.templeId;
+        this.templeLookupTableModal.displayName = this.templeName;
+        this.templeLookupTableModal.show();
+    }
 	
 
 	    setBinaryObjectIdNull() {
         this.foreFather.binaryObjectId = null;
         this.binaryObjectTenantId = '';
     }
+	    setTempleIdNull() {
+        this.foreFather.templeId = null;
+        this.templeName = '';
+    }
 	
 
 	    getNewBinaryObjectId() {
         this.foreFather.binaryObjectId = this.binaryObjectLookupTableModal.id;
         this.binaryObjectTenantId = this.binaryObjectLookupTableModal.displayName;
+    }
+	    getNewTempleId() {
+        this.foreFather.templeId = this.templeLookupTableModal.id;
+        this.templeName = this.templeLookupTableModal.displayName;
     }
 	
 

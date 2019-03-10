@@ -14,6 +14,8 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 
 		 public string BinaryObjectTenantIdFilter { get; set; }
 
+		 		 public string TempleNameFilter { get; set; }
+
 		 
     }
 }

@@ -191,7 +191,7 @@
     },
     {
       "Name": "Lat",
-      "Type": "long",
+      "Type": "double",
       "MaxLength": -1,
       "MinLength": -1,
       "Range": {
@@ -236,6 +236,16 @@
       "IsNullable": true,
       "PropertyName": "BinaryObjectId",
       "DisplayPropertyName": "TenantId",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Hoooten.PlatformMysql.Ancestor",
+      "ForeignEntityName": "Temple",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "TempleId",
+      "DisplayPropertyName": "Name",
       "DuplicationNumber": 0,
       "RelationType": "single"
     }
