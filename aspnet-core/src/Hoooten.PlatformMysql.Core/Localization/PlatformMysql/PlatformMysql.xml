@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="UserGift">User gift</text>
+  <texts>    <text name="Temple">Temple</text>
+    <text name="FanmilyName">Fanmily name</text>
+    <text name="Photo">Photo</text>
+    <text name="IsShow">Is show</text>
+    <text name="NotIsShow">Not is show</text>
+    <text name="TemplesHeaderInfo">Temples header info</text>
+    <text name="CreateNewTemple">Create new temple</text>
+    <text name="EditTemple">Edit temple</text>
+    <text name="DeleteTemple">Delete temple</text>
+    <text name="Temples">Temples</text>
+    <text name="BinaryObjectBytes">Binary object bytes</text>
+    <text name="Citycid">Citycid</text>
+    <text name="PickCity">Pick city</text>
+    <text name="ForeFather">Fore father</text>
+    <text name="Century">Century</text>
+    <text name="BornAt">Born at</text>
+    <text name="DieAt">Die at</text>
+    <text name="LoveNumber">Love number</text>
+    <text name="FlowersNumber">Flowers number</text>
+    <text name="MoneyNumber">Money number</text>
+    <text name="GoldNumber">Gold number</text>
+    <text name="Lon">Lon</text>
+    <text name="Lat">Lat</text>
+    <text name="Marks">Marks</text>
+    <text name="ForeFathersHeaderInfo">Fore fathers header info</text>
+    <text name="CreateNewForeFather">Create new fore father</text>
+    <text name="EditForeFather">Edit fore father</text>
+    <text name="DeleteForeFather">Delete fore father</text>
+    <text name="ForeFathers">Fore fathers</text>
+    <text name="UserGift">User gift</text>
     <text name="TheGiftType">The gift type</text>
     <text name="GiftNumber">Gift number</text>
     <text name="SignDate">Sign date</text>

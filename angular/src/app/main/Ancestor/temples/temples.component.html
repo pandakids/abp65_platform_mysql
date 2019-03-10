@@ -160,6 +160,14 @@
                                         {{l('IsShow')}}
                                         <p-sortIcon field="temple.isShow"></p-sortIcon>
                                     </th>
+                                    <th style="width: 150px" pSortableColumn="temple.lon">
+                                        {{l('Lon')}}
+                                        <p-sortIcon field="temple.lon"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="temple.lat">
+                                        {{l('Lat')}}
+                                        <p-sortIcon field="temple.lat"></p-sortIcon>
+                                    </th>
                                     <th style="width: 150px" pSortableColumn="binaryObjectBytes">
                                         {{l('Bytes')}}
                                         <p-sortIcon field="binaryObjectBytes"></p-sortIcon>
@@ -214,6 +222,8 @@
                                         <div *ngIf="record.temple.isShow" class="text-center"><i class="fa fa-check-circle m--font-success" title="True"></i></div>
 										<div *ngIf="!record.temple.isShow" class="text-center"><i class="fa fa-times-circle" title="False"></i></div>
                                     </td>
+                                    <td style="width:150px">{{record.temple.lon}}</td>
+                                    <td style="width:150px">{{record.temple.lat}}</td>
 
                                 </tr>
                             </ng-template>

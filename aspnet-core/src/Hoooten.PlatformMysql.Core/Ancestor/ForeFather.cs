@@ -18,10 +18,7 @@ namespace Hoooten.PlatformMysql.Ancestor
 		[Required]
 		[StringLength(ForeFatherConsts.MaxNameLength, MinimumLength = ForeFatherConsts.MinNameLength)]
 		public virtual string Name { get; set; }
-
-		/// <summary>
-        /// 年代 十五世
-        /// </summary>
+		
 		[StringLength(ForeFatherConsts.MaxCenturyLength, MinimumLength = ForeFatherConsts.MinCenturyLength)]
 		public virtual string Century { get; set; }
 		
@@ -37,9 +34,9 @@ namespace Hoooten.PlatformMysql.Ancestor
 		
 		public virtual int GoldNumber { get; set; }
 		
-		public virtual string Lon { get; set; }
+		public virtual double Lon { get; set; }
 		
-		public virtual string Lat { get; set; }
+		public virtual double Lat { get; set; }
 		
 		[StringLength(ForeFatherConsts.MaxMarksLength, MinimumLength = ForeFatherConsts.MinMarksLength)]
 		public virtual string Marks { get; set; }

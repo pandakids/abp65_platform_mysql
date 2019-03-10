@@ -41,6 +41,8 @@ namespace Hoooten.PlatformMysql.Ancestor.Exporting
                         L("Address"),
                         L("Photo"),
                         L("IsShow"),
+                        L("Lon"),
+                        L("Lat"),
                         (L("BinaryObject")) + L("Bytes"),
                         (L("User")) + L("Name"),
                         (L("City")) + L("cid")
@@ -54,6 +56,8 @@ namespace Hoooten.PlatformMysql.Ancestor.Exporting
                         _ => _.Temple.Address,
                         _ => _.Temple.Photo,
                         _ => _.Temple.IsShow,
+                        _ => _.Temple.Lon,
+                        _ => _.Temple.Lat,
                         _ => _.BinaryObjectBytes,
                         _ => _.UserName,
                         _ => _.Citycid

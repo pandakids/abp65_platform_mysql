@@ -35,10 +35,10 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 		public int GoldNumber { get; set; }
 		
 		
-		public string Lon { get; set; }
+		public double Lon { get; set; }
 		
 		
-		public string Lat { get; set; }
+		public long Lat { get; set; }
 		
 		
 		[StringLength(ForeFatherConsts.MaxMarksLength, MinimumLength = ForeFatherConsts.MinMarksLength)]

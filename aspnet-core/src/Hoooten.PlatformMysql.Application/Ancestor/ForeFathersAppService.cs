@@ -37,7 +37,7 @@ namespace Hoooten.PlatformMysql.Ancestor
          {
 
 			var filteredForeFathers = _foreFatherRepository.GetAll()
-						.WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false  || e.Name.Contains(input.Filter) || e.Century.Contains(input.Filter) || e.Lon.Contains(input.Filter) || e.Lat.Contains(input.Filter) || e.Marks.Contains(input.Filter))
+						.WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false  || e.Name.Contains(input.Filter) || e.Century.Contains(input.Filter) || e.Marks.Contains(input.Filter))
 						.WhereIf(!string.IsNullOrWhiteSpace(input.NameFilter),  e => e.Name.ToLower() == input.NameFilter.ToLower().Trim())
 						.WhereIf(!string.IsNullOrWhiteSpace(input.CenturyFilter),  e => e.Century.ToLower() == input.CenturyFilter.ToLower().Trim());
 
@@ -119,7 +119,7 @@ namespace Hoooten.PlatformMysql.Ancestor
          {
 
 			var filteredForeFathers = _foreFatherRepository.GetAll()
-						.WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false  || e.Name.Contains(input.Filter) || e.Century.Contains(input.Filter) || e.Lon.Contains(input.Filter) || e.Lat.Contains(input.Filter) || e.Marks.Contains(input.Filter))
+						.WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false  || e.Name.Contains(input.Filter) || e.Century.Contains(input.Filter) || e.Marks.Contains(input.Filter))
 						.WhereIf(!string.IsNullOrWhiteSpace(input.NameFilter),  e => e.Name.ToLower() == input.NameFilter.ToLower().Trim())
 						.WhereIf(!string.IsNullOrWhiteSpace(input.CenturyFilter),  e => e.Century.ToLower() == input.CenturyFilter.ToLower().Trim());
 

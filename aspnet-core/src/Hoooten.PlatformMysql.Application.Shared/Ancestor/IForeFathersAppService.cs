@@ -29,6 +29,5 @@ namespace Hoooten.PlatformMysql.Ancestor
         /// <param name="input"></param>
         /// <returns></returns>
         Task ReSetPosition(ReSetPositionInput input);
-
     }
 }

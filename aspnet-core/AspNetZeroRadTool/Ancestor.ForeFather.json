@@ -1,5 +1,5 @@
 {
-  "IsRegenerate": false,
+  "IsRegenerate": true,
   "MenuPosition": "main",
   "RelativeNamespace": "Ancestor",
   "EntityName": "ForeFather",
@@ -59,8 +59,8 @@
     {
       "Name": "BornAt",
       "Type": "DateTime",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0,
@@ -78,8 +78,8 @@
     {
       "Name": "DieAt",
       "Type": "DateTime",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0,
@@ -97,8 +97,8 @@
     {
       "Name": "LoveNumber",
       "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0,
@@ -116,8 +116,8 @@
     {
       "Name": "FlowersNumber",
       "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0,
@@ -135,8 +135,8 @@
     {
       "Name": "MoneyNumber",
       "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0,
@@ -154,8 +154,8 @@
     {
       "Name": "GoldNumber",
       "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0,
@@ -172,7 +172,7 @@
     },
     {
       "Name": "Lon",
-      "Type": "string",
+      "Type": "double",
       "MaxLength": -1,
       "MinLength": -1,
       "Range": {
@@ -191,7 +191,7 @@
     },
     {
       "Name": "Lat",
-      "Type": "string",
+      "Type": "long",
       "MaxLength": -1,
       "MinLength": -1,
       "Range": {

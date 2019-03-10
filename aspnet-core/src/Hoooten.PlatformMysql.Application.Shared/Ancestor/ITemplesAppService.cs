@@ -21,7 +21,7 @@ namespace Hoooten.PlatformMysql.Ancestor
         /// <param name="input"></param>
         /// <returns></returns>
 		Task CreateOrEdit(CreateOrEditTempleDto input);
-        
+
 		Task Delete(EntityDto input);
 
 		Task<FileDto> GetTemplesToExcel(GetAllTemplesForExcelInput input);

@@ -30,6 +30,12 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 		public string Photo { get; set; }
 		
 		
+		public double Lon { get; set; }
+		
+		
+		public double Lat { get; set; }
+		
+		
 		 public Guid? BinaryObjectId { get; set; }
 		 
 		 		 public long? UserId { get; set; }

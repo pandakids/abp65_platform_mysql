@@ -18,6 +18,10 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 
 		public bool IsShow { get; set; }
 
+		public double Lon { get; set; }
+
+		public double Lat { get; set; }
+
 
 		 public Guid? BinaryObjectId { get; set; }
 
