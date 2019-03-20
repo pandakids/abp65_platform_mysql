@@ -73,6 +73,7 @@ namespace Hoooten.PlatformMysql.Authorization.Users
                 EmailAddress = emailAddress,
                 IsActive = isNewRegisteredUserActiveByDefault,
                 UserName = userName,
+                PhoneNumber = userName,//set userName as PhoneNumber
                 IsEmailConfirmed = isEmailConfirmed,
                 Roles = new List<UserRole>()
             };
