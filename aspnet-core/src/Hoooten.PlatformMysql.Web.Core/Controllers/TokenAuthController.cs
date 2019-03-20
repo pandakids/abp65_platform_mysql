@@ -357,6 +357,7 @@ namespace Hoooten.PlatformMysql.Web.Controllers
             var user = await _userRegistrationManager.RegisterAsync(
                 externalLoginInfo.Name,
                 externalLoginInfo.Surname,
+                1000,
                 externalLoginInfo.EmailAddress,
                 externalLoginInfo.EmailAddress.ToMd5(),
                 Authorization.Users.User.CreateRandomPassword(),

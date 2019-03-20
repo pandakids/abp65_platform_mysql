@@ -97,6 +97,7 @@ namespace Hoooten.PlatformMysql.Authorization.Accounts
             var user = await _userRegistrationManager.RegisterAsync(
                 input.Name,
                 input.Surname,
+                int.Parse(input.CaptchaResponse),
                 input.EmailAddress,
                 input.UserName,
                 input.Password,

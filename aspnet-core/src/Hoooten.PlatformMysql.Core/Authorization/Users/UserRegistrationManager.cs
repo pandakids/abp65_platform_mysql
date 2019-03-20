@@ -55,7 +55,7 @@ namespace Hoooten.PlatformMysql.Authorization.Users
             AsyncQueryableExecuter = NullAsyncQueryableExecuter.Instance;
         }
 
-        public async Task<User> RegisterAsync(string name, string surname, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed, string emailActivationLink)
+        public async Task<User> RegisterAsync(string name, string surname, int captchaResponse, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed, string emailActivationLink)
         {
             CheckForTenant();
             CheckSelfRegistrationIsEnabled();
@@ -74,6 +74,7 @@ namespace Hoooten.PlatformMysql.Authorization.Users
                 IsActive = isNewRegisteredUserActiveByDefault,
                 UserName = userName,
                 PhoneNumber = userName,//set userName as PhoneNumber
+                Captcha = captchaResponse,
                 IsEmailConfirmed = isEmailConfirmed,
                 Roles = new List<UserRole>()
             };
