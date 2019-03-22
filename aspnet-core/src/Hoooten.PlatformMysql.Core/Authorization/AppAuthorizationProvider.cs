@@ -30,52 +30,52 @@ namespace Hoooten.PlatformMysql.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
-            var foreActivities = pages.CreateChildPermission(AppPermissions.Pages_ForeActivities, L("ForeActivities"), multiTenancySides: MultiTenancySides.Host);
-            foreActivities.CreateChildPermission(AppPermissions.Pages_ForeActivities_Create, L("CreateNewForeActivity"), multiTenancySides: MultiTenancySides.Host);
-            foreActivities.CreateChildPermission(AppPermissions.Pages_ForeActivities_Edit, L("EditForeActivity"), multiTenancySides: MultiTenancySides.Host);
-            foreActivities.CreateChildPermission(AppPermissions.Pages_ForeActivities_Delete, L("DeleteForeActivity"), multiTenancySides: MultiTenancySides.Host);
+            var foreActivities = pages.CreateChildPermission(AppPermissions.Pages_ForeActivities, L("ForeActivities"), multiTenancySides: MultiTenancySides.Tenant);
+            foreActivities.CreateChildPermission(AppPermissions.Pages_ForeActivities_Create, L("CreateNewForeActivity"), multiTenancySides: MultiTenancySides.Tenant);
+            foreActivities.CreateChildPermission(AppPermissions.Pages_ForeActivities_Edit, L("EditForeActivity"), multiTenancySides: MultiTenancySides.Tenant);
+            foreActivities.CreateChildPermission(AppPermissions.Pages_ForeActivities_Delete, L("DeleteForeActivity"), multiTenancySides: MultiTenancySides.Tenant);
 
 
 
-            var userGifts = pages.CreateChildPermission(AppPermissions.Pages_UserGifts, L("UserGifts"), multiTenancySides: MultiTenancySides.Host);
-            userGifts.CreateChildPermission(AppPermissions.Pages_UserGifts_Create, L("CreateNewUserGift"), multiTenancySides: MultiTenancySides.Host);
-            userGifts.CreateChildPermission(AppPermissions.Pages_UserGifts_Edit, L("EditUserGift"), multiTenancySides: MultiTenancySides.Host);
-            userGifts.CreateChildPermission(AppPermissions.Pages_UserGifts_Delete, L("DeleteUserGift"), multiTenancySides: MultiTenancySides.Host);
+            var userGifts = pages.CreateChildPermission(AppPermissions.Pages_UserGifts, L("UserGifts"), multiTenancySides: MultiTenancySides.Tenant);
+            userGifts.CreateChildPermission(AppPermissions.Pages_UserGifts_Create, L("CreateNewUserGift"), multiTenancySides: MultiTenancySides.Tenant);
+            userGifts.CreateChildPermission(AppPermissions.Pages_UserGifts_Edit, L("EditUserGift"), multiTenancySides: MultiTenancySides.Tenant);
+            userGifts.CreateChildPermission(AppPermissions.Pages_UserGifts_Delete, L("DeleteUserGift"), multiTenancySides: MultiTenancySides.Tenant);
 
 
 
-            var foreFatherGifts = pages.CreateChildPermission(AppPermissions.Pages_ForeFatherGifts, L("ForeFatherGifts"), multiTenancySides: MultiTenancySides.Host);
-            foreFatherGifts.CreateChildPermission(AppPermissions.Pages_ForeFatherGifts_Create, L("CreateNewForeFatherGift"), multiTenancySides: MultiTenancySides.Host);
-            foreFatherGifts.CreateChildPermission(AppPermissions.Pages_ForeFatherGifts_Edit, L("EditForeFatherGift"), multiTenancySides: MultiTenancySides.Host);
-            foreFatherGifts.CreateChildPermission(AppPermissions.Pages_ForeFatherGifts_Delete, L("DeleteForeFatherGift"), multiTenancySides: MultiTenancySides.Host);
+            var foreFatherGifts = pages.CreateChildPermission(AppPermissions.Pages_ForeFatherGifts, L("ForeFatherGifts"), multiTenancySides: MultiTenancySides.Tenant);
+            foreFatherGifts.CreateChildPermission(AppPermissions.Pages_ForeFatherGifts_Create, L("CreateNewForeFatherGift"), multiTenancySides: MultiTenancySides.Tenant);
+            foreFatherGifts.CreateChildPermission(AppPermissions.Pages_ForeFatherGifts_Edit, L("EditForeFatherGift"), multiTenancySides: MultiTenancySides.Tenant);
+            foreFatherGifts.CreateChildPermission(AppPermissions.Pages_ForeFatherGifts_Delete, L("DeleteForeFatherGift"), multiTenancySides: MultiTenancySides.Tenant);
 
 
 
-            var foreFathers = pages.CreateChildPermission(AppPermissions.Pages_ForeFathers, L("ForeFathers"), multiTenancySides: MultiTenancySides.Host);
-            foreFathers.CreateChildPermission(AppPermissions.Pages_ForeFathers_Create, L("CreateNewForeFather"), multiTenancySides: MultiTenancySides.Host);
-            foreFathers.CreateChildPermission(AppPermissions.Pages_ForeFathers_Edit, L("EditForeFather"), multiTenancySides: MultiTenancySides.Host);
-            foreFathers.CreateChildPermission(AppPermissions.Pages_ForeFathers_Delete, L("DeleteForeFather"), multiTenancySides: MultiTenancySides.Host);
+            var foreFathers = pages.CreateChildPermission(AppPermissions.Pages_ForeFathers, L("ForeFathers"), multiTenancySides: MultiTenancySides.Tenant);
+            foreFathers.CreateChildPermission(AppPermissions.Pages_ForeFathers_Create, L("CreateNewForeFather"), multiTenancySides: MultiTenancySides.Tenant);
+            foreFathers.CreateChildPermission(AppPermissions.Pages_ForeFathers_Edit, L("EditForeFather"), multiTenancySides: MultiTenancySides.Tenant);
+            foreFathers.CreateChildPermission(AppPermissions.Pages_ForeFathers_Delete, L("DeleteForeFather"), multiTenancySides: MultiTenancySides.Tenant);
 
 
 
-            var templeMembers = pages.CreateChildPermission(AppPermissions.Pages_TempleMembers, L("TempleMembers"), multiTenancySides: MultiTenancySides.Host);
-            templeMembers.CreateChildPermission(AppPermissions.Pages_TempleMembers_Create, L("CreateNewTempleMember"), multiTenancySides: MultiTenancySides.Host);
-            templeMembers.CreateChildPermission(AppPermissions.Pages_TempleMembers_Edit, L("EditTempleMember"), multiTenancySides: MultiTenancySides.Host);
-            templeMembers.CreateChildPermission(AppPermissions.Pages_TempleMembers_Delete, L("DeleteTempleMember"), multiTenancySides: MultiTenancySides.Host);
+            var templeMembers = pages.CreateChildPermission(AppPermissions.Pages_TempleMembers, L("TempleMembers"), multiTenancySides: MultiTenancySides.Tenant);
+            templeMembers.CreateChildPermission(AppPermissions.Pages_TempleMembers_Create, L("CreateNewTempleMember"), multiTenancySides: MultiTenancySides.Tenant);
+            templeMembers.CreateChildPermission(AppPermissions.Pages_TempleMembers_Edit, L("EditTempleMember"), multiTenancySides: MultiTenancySides.Tenant);
+            templeMembers.CreateChildPermission(AppPermissions.Pages_TempleMembers_Delete, L("DeleteTempleMember"), multiTenancySides: MultiTenancySides.Tenant);
 
 
 
-            var temples = pages.CreateChildPermission(AppPermissions.Pages_Temples, L("Temples"), multiTenancySides: MultiTenancySides.Host);
-            temples.CreateChildPermission(AppPermissions.Pages_Temples_Create, L("CreateNewTemple"), multiTenancySides: MultiTenancySides.Host);
-            temples.CreateChildPermission(AppPermissions.Pages_Temples_Edit, L("EditTemple"), multiTenancySides: MultiTenancySides.Host);
-            temples.CreateChildPermission(AppPermissions.Pages_Temples_Delete, L("DeleteTemple"), multiTenancySides: MultiTenancySides.Host);
+            var temples = pages.CreateChildPermission(AppPermissions.Pages_Temples, L("Temples"), multiTenancySides: MultiTenancySides.Tenant);
+            temples.CreateChildPermission(AppPermissions.Pages_Temples_Create, L("CreateNewTemple"), multiTenancySides: MultiTenancySides.Tenant);
+            temples.CreateChildPermission(AppPermissions.Pages_Temples_Edit, L("EditTemple"), multiTenancySides: MultiTenancySides.Tenant);
+            temples.CreateChildPermission(AppPermissions.Pages_Temples_Delete, L("DeleteTemple"), multiTenancySides: MultiTenancySides.Tenant);
 
 
 
-            var cities = pages.CreateChildPermission(AppPermissions.Pages_Cities, L("Cities"), multiTenancySides: MultiTenancySides.Host);
-            cities.CreateChildPermission(AppPermissions.Pages_Cities_Create, L("CreateNewCity"), multiTenancySides: MultiTenancySides.Host);
-            cities.CreateChildPermission(AppPermissions.Pages_Cities_Edit, L("EditCity"), multiTenancySides: MultiTenancySides.Host);
-            cities.CreateChildPermission(AppPermissions.Pages_Cities_Delete, L("DeleteCity"), multiTenancySides: MultiTenancySides.Host);
+            var cities = pages.CreateChildPermission(AppPermissions.Pages_Cities, L("Cities"), multiTenancySides: MultiTenancySides.Tenant);
+            cities.CreateChildPermission(AppPermissions.Pages_Cities_Create, L("CreateNewCity"), multiTenancySides: MultiTenancySides.Tenant);
+            cities.CreateChildPermission(AppPermissions.Pages_Cities_Edit, L("EditCity"), multiTenancySides: MultiTenancySides.Tenant);
+            cities.CreateChildPermission(AppPermissions.Pages_Cities_Delete, L("DeleteCity"), multiTenancySides: MultiTenancySides.Tenant);
 
 
 
