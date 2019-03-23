@@ -144,10 +144,10 @@ namespace Hoooten.PlatformMysql.Ancestor
 
             //ËÍ½ðÇ®£¬Ö½±ÒµÈ
             var user = _userRepository.Get(userId);
-            user.FlowersNumber = 20;
-            user.GoldNumber = 10;
-            user.LoveNumber = 1000;
-            user.MoneyNumber = 1000;
+            user.FlowersNumber +=20;
+            user.GoldNumber += 10;
+            user.LoveNumber += 1000;
+            user.MoneyNumber += 1000;
 
             await _templeRepository.InsertAsync(temple);
             

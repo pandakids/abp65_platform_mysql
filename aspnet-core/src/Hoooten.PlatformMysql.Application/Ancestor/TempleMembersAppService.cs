@@ -15,6 +15,8 @@ using Abp.Application.Services.Dto;
 using Hoooten.PlatformMysql.Authorization;
 using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Abp.Runtime.Session;
+using Abp.UI;
 
 namespace Hoooten.PlatformMysql.Ancestor
 {
@@ -41,8 +43,8 @@ namespace Hoooten.PlatformMysql.Ancestor
 
             var filteredTempleMembers = _templeMemberRepository.GetAll()
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Marks.Contains(input.Filter))
-                        .WhereIf(input.IsApprovedFilter > -1, e => Convert.ToInt32(e.IsApproved) == input.IsApprovedFilter)
-                        .Where(e => input.TempleId == e.TempleId);
+                        .WhereIf(input.IsApprovedFilter > -1, e => Convert.ToInt32(e.IsApproved) == input.IsApprovedFilter);
+                        //.Where(e => input.TempleId == e.TempleId);
 
 
             var query = (from o in filteredTempleMembers
@@ -126,6 +128,18 @@ namespace Hoooten.PlatformMysql.Ancestor
         [AbpAuthorize(AppPermissions.Pages_TempleMembers_Create)]
         private async Task Create(CreateOrEditTempleMemberDto input)
         {
+            var userId = AbpSession.GetUserId();
+            if (!input.UserId.HasValue)
+            {
+                input.UserId = userId;
+            }
+
+            var count = _templeMemberRepository.GetAll().Where(e=>e.UserId == userId && e.TempleId == input.TempleId);
+            if (count.Any())
+            {
+                throw new UserFriendlyException("已经加入，无需重复申请");
+            }
+
             var templeMember = ObjectMapper.Map<TempleMember>(input);
 
 

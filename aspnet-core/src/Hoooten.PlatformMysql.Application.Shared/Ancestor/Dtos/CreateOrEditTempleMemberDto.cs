@@ -15,7 +15,7 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 		public bool IsApproved { get; set; }
 		
 		
-		 public long UserId { get; set; }
+		 public long? UserId { get; set; }
 		 
 		 		 public int TempleId { get; set; }
 		 
