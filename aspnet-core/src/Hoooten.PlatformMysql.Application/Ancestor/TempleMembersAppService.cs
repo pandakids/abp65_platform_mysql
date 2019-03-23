@@ -43,8 +43,8 @@ namespace Hoooten.PlatformMysql.Ancestor
 
             var filteredTempleMembers = _templeMemberRepository.GetAll()
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Marks.Contains(input.Filter))
-                        .WhereIf(input.IsApprovedFilter > -1, e => Convert.ToInt32(e.IsApproved) == input.IsApprovedFilter);
-                        //.Where(e => input.TempleId == e.TempleId);
+                        .WhereIf(input.IsApprovedFilter.HasValue , e => Convert.ToInt32(e.IsApproved) == input.IsApprovedFilter)
+                        .Where(e => input.TempleId == e.TempleId);
 
 
             var query = (from o in filteredTempleMembers

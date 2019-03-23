@@ -7,7 +7,7 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
     {
         public string Filter { get; set; }
 
-        public int IsApprovedFilter { get; set; }
+        public int? IsApprovedFilter { get; set; }
 
 
         public string UserNameFilter { get; set; }
