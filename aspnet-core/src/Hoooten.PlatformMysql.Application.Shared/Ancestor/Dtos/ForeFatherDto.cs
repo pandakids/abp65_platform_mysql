@@ -33,6 +33,6 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 
 		 		 public int? TempleId { get; set; }
 
-		 
+        public string Sexy { get; set; }
     }
 }
