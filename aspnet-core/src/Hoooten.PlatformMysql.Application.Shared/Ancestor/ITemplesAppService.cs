@@ -33,14 +33,6 @@ namespace Hoooten.PlatformMysql.Ancestor
 		
 		Task<PagedResultDto<CityLookupTableDto>> GetAllCityForLookupTable(GetAllForLookupTableInput input);
 
-        /// <summary>
-        /// 加入宗堂
-        /// 1 需宗堂管理员进行审核
-        /// 2 奖励纸钱，元宝
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        Task JoinIn(EntityDto input);
 
         /// <summary>
         /// 审核加入宗堂

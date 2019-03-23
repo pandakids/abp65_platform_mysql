@@ -6,6 +6,9 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 {
     public class ApproveJoinInMemberInput
     {
-        public int JoinInMemberId { get; set; }
+        /// <summary>
+        /// 主键
+        /// </summary>
+        public int TempleMemberId { get; set; }
     }
 }

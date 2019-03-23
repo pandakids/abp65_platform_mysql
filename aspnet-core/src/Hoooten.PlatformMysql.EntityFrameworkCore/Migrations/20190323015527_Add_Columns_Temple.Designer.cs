@@ -3,14 +3,16 @@ using System;
 using Hoooten.PlatformMysql.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hoooten.PlatformMysql.Migrations
 {
     [DbContext(typeof(PlatformMysqlDbContext))]
-    partial class PlatformMysqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190323015527_Add_Columns_Temple")]
+    partial class Add_Columns_Temple
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

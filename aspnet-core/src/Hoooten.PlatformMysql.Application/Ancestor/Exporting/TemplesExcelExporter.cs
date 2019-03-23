@@ -37,7 +37,7 @@ namespace Hoooten.PlatformMysql.Ancestor.Exporting
                         sheet,
                         L("Name"),
                         L("Code"),
-                        L("FanmilyName"),
+                        L("FamilyName"),
                         L("Address"),
                         L("Photo"),
                         L("IsShow"),

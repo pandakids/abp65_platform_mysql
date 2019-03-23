@@ -41,7 +41,8 @@ namespace Hoooten.PlatformMysql.Ancestor
 
             var filteredTempleMembers = _templeMemberRepository.GetAll()
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Marks.Contains(input.Filter))
-                        .WhereIf(input.IsApprovedFilter > -1, e => Convert.ToInt32(e.IsApproved) == input.IsApprovedFilter);
+                        .WhereIf(input.IsApprovedFilter > -1, e => Convert.ToInt32(e.IsApproved) == input.IsApprovedFilter)
+                        .Where(e => input.TempleId == e.TempleId);
 
 
             var query = (from o in filteredTempleMembers
@@ -97,6 +98,13 @@ namespace Hoooten.PlatformMysql.Ancestor
             return output;
         }
 
+        /// <summary>
+        /// 加入宗堂
+        /// 1 需宗堂管理员进行审核
+        /// 2 奖励纸钱，元宝
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task CreateOrEdit(CreateOrEditTempleMemberDto input)
         {
             if (input.Id == null)
@@ -107,6 +115,12 @@ namespace Hoooten.PlatformMysql.Ancestor
             {
                 await Update(input);
             }
+        }
+
+        public async Task Approve(CreateOrEditTempleMemberDto input)
+        {
+            var templeMember = await _templeMemberRepository.FirstOrDefaultAsync((int)input.Id);
+            templeMember.IsApproved = true;
         }
 
         [AbpAuthorize(AppPermissions.Pages_TempleMembers_Create)]

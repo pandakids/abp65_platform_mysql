@@ -30,5 +30,6 @@ namespace Hoooten.PlatformMysql.Ancestor
         /// <param name="templeId"></param>
         /// <returns></returns>
         Task<PagedResultDto<GetTempleMemberForView>> GetAllByTempleId(GetAllTempleMembersByTempleIdInput input);
+        Task Approve(CreateOrEditTempleMemberDto createOrEditTempleMemberDto);
     }
 }
