@@ -25,7 +25,7 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
         /// –’£®¿Ó£¨µ•£¨’≈...£©
         /// </summary>
         [Required]
-        [StringLength(TempleConsts.MaxFanmilyNameLength, MinimumLength = TempleConsts.MinFanmilyNameLength)]
+        [StringLength(TempleConsts.MaxFamilyNameLength, MinimumLength = TempleConsts.MinFamilyNameLength)]
         public string FamilyName { get; set; }
 
         /// <summary>

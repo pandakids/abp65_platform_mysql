@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>    <text name="Temple">Temple</text>
-    <text name="FanmilyName">Fanmily name</text>
+    <text name="FamilyName">Fanmily name</text>
     <text name="Photo">Photo</text>
     <text name="IsShow">Is show</text>
     <text name="NotIsShow">Not is show</text>

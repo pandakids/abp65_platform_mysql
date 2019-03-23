@@ -52,7 +52,7 @@ namespace Hoooten.PlatformMysql.Ancestor.Exporting
                         sheet, 2, temples,
                         _ => _.Temple.Name,
                         _ => _.Temple.Code,
-                        _ => _.Temple.FanmilyName,
+                        _ => _.Temple.FamilyName,
                         _ => _.Temple.Address,
                         _ => _.Temple.Photo,
                         _ => _.Temple.IsShow,

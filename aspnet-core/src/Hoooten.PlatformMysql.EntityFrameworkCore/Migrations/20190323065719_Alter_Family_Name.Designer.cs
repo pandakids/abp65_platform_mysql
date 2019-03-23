@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hoooten.PlatformMysql.Migrations
 {
     [DbContext(typeof(PlatformMysqlDbContext))]
-    [Migration("20190301144106_Add_Main_Tables")]
-    partial class Add_Main_Tables
+    [Migration("20190323065719_Alter_Family_Name")]
+    partial class Alter_Family_Name
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -985,9 +985,9 @@ namespace Hoooten.PlatformMysql.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<string>("Lat");
+                    b.Property<double>("Lat");
 
-                    b.Property<string>("Lon");
+                    b.Property<double>("Lon");
 
                     b.Property<int>("LoveNumber");
 
@@ -1000,9 +1000,13 @@ namespace Hoooten.PlatformMysql.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<int?>("TempleId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BinaryObjectId");
+
+                    b.HasIndex("TempleId");
 
                     b.ToTable("ForeFathers");
                 });
@@ -1078,14 +1082,16 @@ namespace Hoooten.PlatformMysql.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
+                    b.Property<double>("Lat");
+
+                    b.Property<double>("Lon");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<string>("Photo")
                         .HasMaxLength(36);
-
-                    b.Property<long?>("RecommendUserId");
 
                     b.Property<long?>("UserId");
 
@@ -1094,8 +1100,6 @@ namespace Hoooten.PlatformMysql.Migrations
                     b.HasIndex("BinaryObjectId");
 
                     b.HasIndex("CityId");
-
-                    b.HasIndex("RecommendUserId");
 
                     b.HasIndex("UserId");
 
@@ -1240,6 +1244,8 @@ namespace Hoooten.PlatformMysql.Migrations
                         .HasMaxLength(64);
 
                     b.Property<DateTime?>("BornAt");
+
+                    b.Property<int>("Captcha");
 
                     b.Property<string>("Century")
                         .HasMaxLength(10);
@@ -1751,6 +1757,10 @@ namespace Hoooten.PlatformMysql.Migrations
                     b.HasOne("Hoooten.PlatformMysql.Storage.BinaryObject", "BinaryObject")
                         .WithMany()
                         .HasForeignKey("BinaryObjectId");
+
+                    b.HasOne("Hoooten.PlatformMysql.Ancestor.Temple", "Temple")
+                        .WithMany()
+                        .HasForeignKey("TempleId");
                 });
 
             modelBuilder.Entity("Hoooten.PlatformMysql.Ancestor.ForeFatherGift", b =>
@@ -1774,10 +1784,6 @@ namespace Hoooten.PlatformMysql.Migrations
                     b.HasOne("Hoooten.PlatformMysql.Ancestor.City", "City")
                         .WithMany()
                         .HasForeignKey("CityId");
-
-                    b.HasOne("Hoooten.PlatformMysql.Authorization.Users.User", "RecommendUser")
-                        .WithMany()
-                        .HasForeignKey("RecommendUserId");
 
                     b.HasOne("Hoooten.PlatformMysql.Authorization.Users.User", "User")
                         .WithMany()

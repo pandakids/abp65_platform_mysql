@@ -9,7 +9,7 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 
 		public string NameFilter { get; set; }
 
-		public string FanmilyNameFilter { get; set; }
+		public string FamilyNameFilter { get; set; }
 
 		public int IsShowFilter { get; set; }
 

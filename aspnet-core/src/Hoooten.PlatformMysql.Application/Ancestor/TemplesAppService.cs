@@ -47,9 +47,9 @@ namespace Hoooten.PlatformMysql.Ancestor
         {
 
             var filteredTemples = _templeRepository.GetAll()
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Name.Contains(input.Filter) || e.Code.Contains(input.Filter) || e.FanmilyName.Contains(input.Filter) || e.Address.Contains(input.Filter) || e.Photo.Contains(input.Filter))
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Name.Contains(input.Filter) || e.Code.Contains(input.Filter) || e.FamilyName.Contains(input.Filter) || e.Address.Contains(input.Filter) || e.Photo.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameFilter), e => e.Name.ToLower() == input.NameFilter.ToLower().Trim())
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.FanmilyNameFilter), e => e.FanmilyName.ToLower() == input.FanmilyNameFilter.ToLower().Trim())
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.FamilyNameFilter), e => e.FamilyName.ToLower() == input.FamilyNameFilter.ToLower().Trim())
                         .WhereIf(input.IsShowFilter > -1, e => Convert.ToInt32(e.IsShow) == input.IsShowFilter);
 
 
@@ -170,9 +170,9 @@ namespace Hoooten.PlatformMysql.Ancestor
         {
 
             var filteredTemples = _templeRepository.GetAll()
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Name.Contains(input.Filter) || e.Code.Contains(input.Filter) || e.FanmilyName.Contains(input.Filter) || e.Address.Contains(input.Filter) || e.Photo.Contains(input.Filter))
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Name.Contains(input.Filter) || e.Code.Contains(input.Filter) || e.FamilyName.Contains(input.Filter) || e.Address.Contains(input.Filter) || e.Photo.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameFilter), e => e.Name.ToLower() == input.NameFilter.ToLower().Trim())
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.FanmilyNameFilter), e => e.FanmilyName.ToLower() == input.FanmilyNameFilter.ToLower().Trim())
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.FamilyNameFilter), e => e.FamilyName.ToLower() == input.FamilyNameFilter.ToLower().Trim())
                         .WhereIf(input.IsShowFilter > -1, e => Convert.ToInt32(e.IsShow) == input.IsShowFilter);
 
 

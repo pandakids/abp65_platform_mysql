@@ -10,7 +10,7 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 
 		public string Code { get; set; }
 
-		public string FanmilyName { get; set; }
+		public string FamilyName { get; set; }
 
 		public string Address { get; set; }
 

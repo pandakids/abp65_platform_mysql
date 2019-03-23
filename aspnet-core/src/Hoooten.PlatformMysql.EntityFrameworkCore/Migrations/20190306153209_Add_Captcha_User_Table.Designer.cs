@@ -1066,7 +1066,7 @@ namespace Hoooten.PlatformMysql.Migrations
 
                     b.Property<DateTime?>("DeletionTime");
 
-                    b.Property<string>("FanmilyName")
+                    b.Property<string>("FamilyName")
                         .IsRequired()
                         .HasMaxLength(5);
 

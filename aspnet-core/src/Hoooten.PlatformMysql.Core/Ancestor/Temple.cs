@@ -25,8 +25,8 @@ namespace Hoooten.PlatformMysql.Ancestor
 		public virtual string Code { get; set; }
 		
 		[Required]
-		[StringLength(TempleConsts.MaxFanmilyNameLength, MinimumLength = TempleConsts.MinFanmilyNameLength)]
-		public virtual string FanmilyName { get; set; }
+		[StringLength(TempleConsts.MaxFamilyNameLength, MinimumLength = TempleConsts.MinFamilyNameLength)]
+		public virtual string FamilyName { get; set; }
 		
 		[StringLength(TempleConsts.MaxAddressLength, MinimumLength = TempleConsts.MinAddressLength)]
 		public virtual string Address { get; set; }

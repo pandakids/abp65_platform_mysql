@@ -44,7 +44,7 @@ namespace Hoooten.PlatformMysql.Migrations
                     DeletionTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 20, nullable: false),
                     Code = table.Column<string>(maxLength: 10, nullable: true),
-                    FanmilyName = table.Column<string>(maxLength: 5, nullable: false),
+                    FamilyName = table.Column<string>(maxLength: 5, nullable: false),
                     Address = table.Column<string>(maxLength: 100, nullable: true),
                     Photo = table.Column<string>(maxLength: 36, nullable: true),
                     IsShow = table.Column<bool>(nullable: false),
