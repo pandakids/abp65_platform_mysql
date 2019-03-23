@@ -48,6 +48,8 @@ namespace Hoooten.PlatformMysql.Ancestor
 		
 		public virtual int? TempleId { get; set; }
 		public Temple Temple { get; set; }
-		
+
+        public virtual string Sexy { get; set; }
+
     }
 }

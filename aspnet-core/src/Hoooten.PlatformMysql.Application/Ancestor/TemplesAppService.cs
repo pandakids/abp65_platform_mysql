@@ -17,6 +17,7 @@ using Hoooten.PlatformMysql.Authorization;
 using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Abp.Runtime.Session;
+using Abp;
 
 namespace Hoooten.PlatformMysql.Ancestor
 {
@@ -141,6 +142,9 @@ namespace Hoooten.PlatformMysql.Ancestor
                 input.UserId = userId;
             }
             var temple = ObjectMapper.Map<Temple>(input);
+
+            //生成Code
+            temple.Code = RandomHelper.GetRandom(100000, 999999).ToString();
 
             //送金钱，纸币等
             var user = _userRepository.Get(userId);

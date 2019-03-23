@@ -15,9 +15,14 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 		
 		[StringLength(ForeFatherConsts.MaxCenturyLength, MinimumLength = ForeFatherConsts.MinCenturyLength)]
 		public string Century { get; set; }
-		
-		
-		public DateTime? BornAt { get; set; }
+
+        /// <summary>
+        /// ÐÔ±ð
+        /// </summary>
+        public string Sexy { get; set; }
+
+
+        public DateTime? BornAt { get; set; }
 		
 		
 		public DateTime? DieAt { get; set; }
