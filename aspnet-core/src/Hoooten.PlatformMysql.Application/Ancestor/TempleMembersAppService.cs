@@ -137,7 +137,7 @@ namespace Hoooten.PlatformMysql.Ancestor
             var count = _templeMemberRepository.GetAll().Where(e=>e.UserId == userId && e.TempleId == input.TempleId);
             if (count.Any())
             {
-                throw new UserFriendlyException("已经加入，无需重复申请");
+                throw new UserFriendlyException(L("AlreadyJoinInTempleWarning"));
             }
 
             var templeMember = ObjectMapper.Map<TempleMember>(input);

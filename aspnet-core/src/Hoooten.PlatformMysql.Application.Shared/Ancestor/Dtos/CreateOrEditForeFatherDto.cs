@@ -47,7 +47,7 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 		
 		 public Guid? BinaryObjectId { get; set; }
 		 
-		 		 public int? TempleId { get; set; }
+		 //public int? TempleId { get; set; }
 		 
 		 
     }

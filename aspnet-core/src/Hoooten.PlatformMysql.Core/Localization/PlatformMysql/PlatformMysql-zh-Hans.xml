@@ -803,5 +803,8 @@
     <text name="NotificationDeleteWarningMessage">此通知将被删除</text>
     <text name="ProcessingWithThreeDot">处理中...</text>
     <text name="ThereIsNoSuchImageFileWithGivenToken">没有给定令牌的图像</text>
+    
+    <text name="NotJoinInTempleWarning">未加入任何宗堂，请先创建宗堂或加入宗堂</text>
+    <text name="AlreadyJoinInTempleWarning">已经加入，无需重复申请</text>
   </texts>
 </localizationDictionary>

@@ -15,6 +15,8 @@ using Abp.Application.Services.Dto;
 using Hoooten.PlatformMysql.Authorization;
 using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Hoooten.PlatformMysql.Authorization.Users;
+using Abp.UI;
 
 namespace Hoooten.PlatformMysql.Ancestor
 {
@@ -25,24 +27,34 @@ namespace Hoooten.PlatformMysql.Ancestor
 		 private readonly IForeFathersExcelExporter _foreFathersExcelExporter;
 		 private readonly IRepository<BinaryObject,Guid> _binaryObjectRepository;
 		 private readonly IRepository<Temple,int> _templeRepository;
-		 
+        private readonly IRepository<User, long> _userRepository;
+        private readonly IRepository<TempleMember> _templeMemberRepository;
 
-		  public ForeFathersAppService(IRepository<ForeFather> foreFatherRepository, IForeFathersExcelExporter foreFathersExcelExporter , IRepository<BinaryObject, Guid> binaryObjectRepository, IRepository<Temple, int> templeRepository) 
+        public ForeFathersAppService(IRepository<ForeFather> foreFatherRepository, IRepository<User, long> userRepository, IForeFathersExcelExporter foreFathersExcelExporter , IRepository<BinaryObject, Guid> binaryObjectRepository, IRepository<Temple, int> templeRepository, IRepository<TempleMember> templeMemberRepository) 
 		  {
 			_foreFatherRepository = foreFatherRepository;
 			_foreFathersExcelExporter = foreFathersExcelExporter;
 			_binaryObjectRepository = binaryObjectRepository;
 		_templeRepository = templeRepository;
-		
-		  }
+            _userRepository = userRepository;
+            _templeMemberRepository = templeMemberRepository;
+        }
 
 		 public async Task<PagedResultDto<GetForeFatherForView>> GetAll(GetAllForeFathersInput input)
          {
+            //判断是否已经加入宗堂
+            var userId = AbpSession.UserId.Value;
+            var currentUser = _templeMemberRepository.GetAll().Where(e => e.UserId == userId);
+            if (!currentUser.Any()) {
+                throw new UserFriendlyException(L("NotJoinInTempleWarning"));
+            }
+            var templeId = currentUser.FirstOrDefault().TempleId;
 
-			var filteredForeFathers = _foreFatherRepository.GetAll()
-						.WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false  || e.Name.Contains(input.Filter) || e.Century.Contains(input.Filter) || e.Marks.Contains(input.Filter))
-						.WhereIf(!string.IsNullOrWhiteSpace(input.NameFilter),  e => e.Name.ToLower() == input.NameFilter.ToLower().Trim())
-						.WhereIf(!string.IsNullOrWhiteSpace(input.CenturyFilter),  e => e.Century.ToLower() == input.CenturyFilter.ToLower().Trim());
+            var filteredForeFathers = _foreFatherRepository.GetAll()
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Name.Contains(input.Filter) || e.Century.Contains(input.Filter) || e.Marks.Contains(input.Filter))
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.NameFilter), e => e.Name.ToLower() == input.NameFilter.ToLower().Trim())
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.CenturyFilter), e => e.Century.ToLower() == input.CenturyFilter.ToLower().Trim())
+                        .Where(e=> e.TempleId == templeId);
 
 
 			var query = (from o in filteredForeFathers
@@ -84,9 +96,9 @@ namespace Hoooten.PlatformMysql.Ancestor
                 var binaryObject = await _binaryObjectRepository.FirstOrDefaultAsync((Guid)output.ForeFather.BinaryObjectId);
                 output.BinaryObjectTenantId = binaryObject.TenantId.ToString();
             }
-			if (output.ForeFather.TempleId != null)
+			if (foreFather.TempleId.HasValue)
             {
-                var temple = await _templeRepository.FirstOrDefaultAsync((int)output.ForeFather.TempleId);
+                var temple = await _templeRepository.FirstOrDefaultAsync(foreFather.TempleId.Value);
                 output.TempleName = temple.Name.ToString();
             }
 			
@@ -107,9 +119,19 @@ namespace Hoooten.PlatformMysql.Ancestor
 		 [AbpAuthorize(AppPermissions.Pages_ForeFathers_Create)]
 		 private async Task Create(CreateOrEditForeFatherDto input)
          {
-            var foreFather = ObjectMapper.Map<ForeFather>(input);
+            //判断是否已经加入宗堂
+            var userId = AbpSession.UserId.Value;
+            var currentUser = _templeMemberRepository.GetAll().Where(e => e.UserId == userId);
+            if (!currentUser.Any())
+            {
+                throw new UserFriendlyException(L("NotJoinInTempleWarning"));
+            }
+            var templeId = currentUser.FirstOrDefault().TempleId;
 
-			
+            //input.TempleId = templeId;
+
+            var foreFather = ObjectMapper.Map<ForeFather>(input);
+            foreFather.TempleId = templeId;
 
             await _foreFatherRepository.InsertAsync(foreFather);
          }
