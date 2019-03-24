@@ -6,7 +6,9 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 
 		public string UserName { get; set;}
 
-		public string TempleName { get; set;}
+        public string RealName { get; set; }
+
+        public string TempleName { get; set;}
 
         public string Sexy { get; set; }
 

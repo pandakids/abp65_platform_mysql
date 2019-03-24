@@ -55,10 +55,10 @@ namespace Hoooten.PlatformMysql.Ancestor
 
                          select new GetTempleMemberForView()
                          {
-                             TempleMember = ObjectMapper.Map<TempleMemberDto>(o)
-                         ,
-                             UserName = s1 == null ? "" : s1.Name.ToString()//成员姓名
-                    ,
+                             TempleMember = ObjectMapper.Map<TempleMemberDto>(o),
+                             UserName = s1 == null ? "" : s1.Name.ToString(),//成员姓名
+                             RealName = s1.Surname,
+                             Sexy = s1.Sexy,
                              TempleName = s2 == null ? "" : s2.Name.ToString(),//宗堂名称
                              Century = s1.Century,
                              PhoneNumber = s1.PhoneNumber
