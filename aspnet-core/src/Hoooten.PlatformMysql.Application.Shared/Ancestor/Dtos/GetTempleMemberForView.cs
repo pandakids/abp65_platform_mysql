@@ -14,6 +14,5 @@ namespace Hoooten.PlatformMysql.Ancestor.Dtos
 
         public string Century { get; set; }
 
-
     }
 }
