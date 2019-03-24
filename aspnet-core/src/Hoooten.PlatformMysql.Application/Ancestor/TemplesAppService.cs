@@ -18,6 +18,7 @@ using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Abp.Runtime.Session;
 using Abp;
+using Abp.UI;
 
 namespace Hoooten.PlatformMysql.Ancestor
 {
@@ -144,7 +145,7 @@ namespace Hoooten.PlatformMysql.Ancestor
             var temple = ObjectMapper.Map<Temple>(input);
 
             //生成Code
-            temple.Code = RandomHelper.GetRandom(100000, 999999).ToString();
+            temple.Code = GetTempleCode();
 
             //送金钱，纸币等
             var user = _userRepository.Get(userId);
@@ -155,6 +156,16 @@ namespace Hoooten.PlatformMysql.Ancestor
 
             await _templeRepository.InsertAsync(temple);
             
+        }
+
+        private string GetTempleCode()
+        {
+            var templeCode = RandomHelper.GetRandom(100000, 999999).ToString();
+            var templeByCode = _templeRepository.Count(e => e.Code == templeCode);
+            if (templeByCode > 0) {
+                GetTempleCode();
+            }
+            return templeCode;
         }
 
         [AbpAuthorize(AppPermissions.Pages_Temples_Edit)]
@@ -312,9 +323,19 @@ namespace Hoooten.PlatformMysql.Ancestor
             throw new NotImplementedException();
         }
 
-        public Task ChangeTempleMasterRole(ChangeTempleMasterRoleInput changeTemple)
+        public async Task<GetTempleForEditOutput> ChangeTempleMasterRole(ChangeTempleMasterRoleInput changeTemple)
         {
-            throw new NotImplementedException();
+            //判断是否是当前temple的管理员，如果不是，不允许进行更换管理员
+            var temple = await _templeRepository.FirstOrDefaultAsync(changeTemple.TempleId);
+
+            var userId = AbpSession.GetUserId();
+
+            if (temple != null && temple.UserId.HasValue && temple.UserId.Value != userId)
+            {
+                throw new UserFriendlyException(L("ChangeTempleMasterRole"));
+            }
+            temple.UserId = changeTemple.ToUserId;
+            return new GetTempleForEditOutput { Temple = ObjectMapper.Map<CreateOrEditTempleDto>(temple) };
         }
     }
 }

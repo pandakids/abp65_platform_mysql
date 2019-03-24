@@ -53,6 +53,6 @@ namespace Hoooten.PlatformMysql.Ancestor
         /// </summary>
         /// <param name="changeTemple"></param>
         /// <returns></returns>
-        Task ChangeTempleMasterRole(ChangeTempleMasterRoleInput changeTemple);
+        Task<GetTempleForEditOutput> ChangeTempleMasterRole(ChangeTempleMasterRoleInput changeTemple);
     }
 }
