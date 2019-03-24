@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Domain.Entities;
@@ -46,5 +47,31 @@ namespace Hoooten.PlatformMysql.Authorization.Users.Dto
 
         public virtual bool IsLockoutEnabled { get; set; }
 
+
+        public string Sexy { get; set; }
+
+        public DateTime SignDate { get; set; }
+        public string Lon { get; set; }
+        public string Lat { get; set; }
+        /// <summary>
+        /// 爱心数量
+        /// </summary>
+        public int LoveNumber { get; set; }
+
+        /// <summary>
+        /// 鲜花数量
+        /// </summary>
+        public int FlowersNumber { get; set; }
+
+        /// <summary>
+        /// 纸钱数量
+        /// </summary>
+        public int MoneyNumber { get; set; }
+
+        /// <summary>
+        /// 元宝数量
+        /// </summary>
+        public int GoldNumber { get; set; }
+        public string Century { get; set; }
     }
 }
