@@ -197,6 +197,24 @@ namespace Hoooten.PlatformMysql.Authorization.Users
             return output;
         }
 
+        /// <summary>
+        /// 获取当前用户信息
+        /// </summary>
+        /// <returns></returns>
+        public async Task<GetUserForEditOutput> GetUser()
+        {
+            var output = new GetUserForEditOutput();
+
+            var userId = AbpSession.GetUserId();
+
+            var user = await UserManager.GetUserByIdAsync(userId);
+
+            output.User = ObjectMapper.Map<UserEditDto>(user);
+            output.ProfilePictureId = user.ProfilePictureId;
+
+            return output;
+        }
+
         [AbpAuthorize(AppPermissions.Pages_Administration_Users_ChangePermissions)]
         public async Task<GetUserPermissionsForEditOutput> GetUserPermissionsForEdit(EntityDto<long> input)
         {
