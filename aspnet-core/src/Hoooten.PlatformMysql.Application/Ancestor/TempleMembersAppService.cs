@@ -57,10 +57,11 @@ namespace Hoooten.PlatformMysql.Ancestor
                          {
                              TempleMember = ObjectMapper.Map<TempleMemberDto>(o)
                          ,
-                             UserName = s1 == null ? "" : s1.Name.ToString()
+                             UserName = s1 == null ? "" : s1.Name.ToString()//成员姓名
                     ,
-                             TempleName = s2 == null ? "" : s2.Name.ToString()
-
+                             TempleName = s2 == null ? "" : s2.Name.ToString(),//宗堂名称
+                             Century = s1.Century,
+                             PhoneNumber = s1.PhoneNumber
                          })
 
                         .WhereIf(!string.IsNullOrWhiteSpace(input.UserNameFilter), e => e.UserName.ToLower() == input.UserNameFilter.ToLower().Trim())

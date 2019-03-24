@@ -80,6 +80,11 @@ namespace Hoooten.PlatformMysql.Authorization.Users
         public virtual DateTime SignDate { get; set; }
 
         /// <summary>
+        /// 性别
+        /// </summary>
+        public virtual string Sexy { get; set; }
+
+        /// <summary>
         /// 验证码
         /// </summary>
         public virtual int Captcha { get; set; }
