@@ -183,5 +183,10 @@ namespace Hoooten.PlatformMysql.Ancestor
         {
             throw new NotImplementedException();
         }
+
+        public Task GetGift(SendGiftInput input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

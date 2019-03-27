@@ -407,5 +407,17 @@ namespace Hoooten.PlatformMysql.Authorization.Users
                 userListDto.Roles = userListDto.Roles.OrderBy(r => r.RoleName).ToList();
             }
         }
+
+        public async Task SignDaily()
+        {
+            var userId = AbpSession.UserId.Value;
+            var user = await UserManager.GetUserByIdAsync(userId);
+
+            if (user.SignDate.Year == DateTime.Now.Year) {
+                throw new UserFriendlyException(L("AlreadySignDailyWarning"));
+            }
+
+            user.SignDate = DateTime.Now;
+        }
     }
 }

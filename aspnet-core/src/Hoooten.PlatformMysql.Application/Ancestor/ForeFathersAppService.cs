@@ -121,7 +121,7 @@ namespace Hoooten.PlatformMysql.Ancestor
          {
             //判断是否已经加入宗堂
             var userId = AbpSession.UserId.Value;
-            var currentUser = _templeMemberRepository.GetAll().Where(e => e.UserId == userId);
+            var currentUser = _templeMemberRepository.GetAll().Where(e => e.UserId == userId && e.IsApproved == true);
             if (!currentUser.Any())
             {
                 throw new UserFriendlyException(L("NotJoinInTempleWarning"));
