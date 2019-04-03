@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hoooten.PlatformMysql.Appli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hoooten.PlatformMysql.Core.Shared", "src\Hoooten.PlatformMysql.Core.Shared\Hoooten.PlatformMysql.Core.Shared.csproj", "{4D6603C1-F7D6-4681-97F8-69B4BBBC0536}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hoooten.PlatformMysql.Web.Authentication.External", "Hoooten.PlatformMysql.Web.Authentication.External\Hoooten.PlatformMysql.Web.Authentication.External.csproj", "{87A73F53-D44D-4A02-B7AE-7047A5AC8873}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{4D6603C1-F7D6-4681-97F8-69B4BBBC0536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D6603C1-F7D6-4681-97F8-69B4BBBC0536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D6603C1-F7D6-4681-97F8-69B4BBBC0536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87A73F53-D44D-4A02-B7AE-7047A5AC8873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87A73F53-D44D-4A02-B7AE-7047A5AC8873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87A73F53-D44D-4A02-B7AE-7047A5AC8873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87A73F53-D44D-4A02-B7AE-7047A5AC8873}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{25CD4D8C-D3DB-48A0-A4D0-639B6D0BDC7C} = {F10AA149-2626-486E-85BB-9CD5365F3016}
 		{6143A90B-6C2A-4683-8A3A-4D48702770EA} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
 		{4D6603C1-F7D6-4681-97F8-69B4BBBC0536} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
+		{87A73F53-D44D-4A02-B7AE-7047A5AC8873} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {23CD4D4B-B131-473D-9ECB-5DD96E739671}

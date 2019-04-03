@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Hoooten.PlatformMysql.Web.Authentication.External\Hoooten.PlatformMysql.Web.Authentication.External.csproj" />
     <ProjectReference Include="..\Hoooten.PlatformMysql.Web.Core\Hoooten.PlatformMysql.Web.Core.csproj" />
   </ItemGroup>
 

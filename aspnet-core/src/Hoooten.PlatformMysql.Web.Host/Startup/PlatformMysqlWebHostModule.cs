@@ -25,6 +25,7 @@ using Hoooten.PlatformMysql.Configuration;
 using Hoooten.PlatformMysql.EntityFrameworkCore;
 using Hoooten.PlatformMysql.MultiTenancy;
 using Newtonsoft.Json.Linq;
+using Hoooten.PlatformMysql.Web.Authentication.External;
 
 namespace Hoooten.PlatformMysql.Web.Startup
 {
@@ -115,6 +116,18 @@ namespace Hoooten.PlatformMysql.Web.Startup
                         _appConfiguration["Authentication:Google:ClientId"],
                         _appConfiguration["Authentication:Google:ClientSecret"],
                         typeof(GoogleAuthProviderApi)
+                    )
+                );
+            }
+
+            if (bool.Parse(_appConfiguration["Authentication:Wechat:IsEnabled"]))
+            {
+                externalAuthConfiguration.Providers.Add(
+                    new ExternalLoginProviderInfo(
+                        WechatAuthProviderApi.Name,
+                        _appConfiguration["Authentication:Wechat:AppId"],
+                        _appConfiguration["Authentication:Wechat:Secret"],
+                        typeof(WechatAuthProviderApi)
                     )
                 );
             }
